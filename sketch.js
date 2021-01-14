@@ -23,29 +23,31 @@ map.addControl(
     })
 );
 
-// Show markers
-map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Bremen'] // Roland
-      layers: ['Schnoor'] // Schnoor
-      layers: ['Mhle'] // Mühle
-    });
+// // Show markers
+// map.on('click', function(e) {
+//     var features = map.queryRenderedFeatures(e.point, {
+//       layers: ['Bremen'], // Roland
+//       layers: ['Schnoor'], // Schnoor
+//       layers: ['Mhle'] // Mühle
+//     });
   
-    if (!features.length) {
-      return;
-    }
+//     if (!features.length) {
+//       return;
+//     }
   
-    var feature = features[0];
+//     var feature = features[0];
   
-    // Tipp Pop-Up
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-      .addTo(map);
-  });
+//     // Tipp Pop-Up
+//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//       .setLngLat(feature.geometry.coordinates)
+//       .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+//       .addTo(map);
+//   });
   
+//sidebar
+/*
 
-
+*/
 // 
 // map.on('load', function () {
 //     // add source and layer for markers
