@@ -31,12 +31,7 @@ map.on('click', function(e) {
       layers: ['Mhle'], // Mühle
       layers: ['Schnoor'] // Schnoor
     });
-    
-    // Center the map on the coordinates of any clicked symbol from the layer.
-    map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-  
+      
     if (!features.length) {
       return;
     }
@@ -50,27 +45,27 @@ var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .addTo(map);
 });
 
-//    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-//     map.on('click', 'Bremen', function (e) {
-//         map.flyTo({
-//         center: e.features[0].geometry.coordinates
-//         });
-//     });  
-//     // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
-//     map.on('click', 'Schnoor', function (e) {
-//         map.flyTo({
-//         center: e.features[0].geometry.coordinates
-//         });
-//     });  
-//     // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-//     map.on('click', 'Mhle', function (e) {
-//         map.flyTo({
-//         center: e.features[0].geometry.coordinates
-//         });
-//     });  
+   // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+    map.on('click', 'Bremen', function (e) {
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+    // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
+    map.on('click', 'Schnoor', function (e) {
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+    // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
+    map.on('click', 'Mhle', function (e) {
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
 
 //sidebar
-new mapboxgl.Marker().setLngLat(center).addTo(map);
+//new mapboxgl.Marker().setLngLat(center).addTo(map);
  
 function toggleSidebar(id) {
 var elem = document.getElementById(id);
