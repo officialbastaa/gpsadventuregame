@@ -10,7 +10,7 @@ body {
     width: 100%;
 }
 
-/* sidebar *//*
+/* sidebar */
 .rounded-rect {
 background: white;
 border-radius: 10px;
@@ -66,4 +66,3 @@ height: 100%;
 .left.collapsed {
 transform: translateX(-295px);
 }
-*/

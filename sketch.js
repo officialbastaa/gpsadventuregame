@@ -66,7 +66,6 @@ map.on('click', function(e) {
         });
     });  
 
-/*
 //sidebar
 new mapboxgl.Marker().setLngLat(center).addTo(map);
  
@@ -103,4 +102,4 @@ elem.className = classes.join(' ');
  
 map.on('load', function () {
 toggleSidebar('left');
-});*/
+});
