@@ -1,10 +1,11 @@
 // Map ----------------------------------------------------!
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXhwZXJpbWVudGFsbW9iaWxlcGxheSIsImEiOiJja2p2Y2xydTIwN2s0MndvYWpmazB4M2IzIn0.q3CYZLs_taS8F7-pA1eF7g';
+var center = [8.8017, 53.0793]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
-center: [8.8017, 53.0793], // starting position in Bremen [lng, lat]
 zoom: 12, // starting zoom
+center: center,
 });
 
 // Add Fullscreen Button
@@ -23,36 +24,49 @@ map.addControl(
     })
 );
 
-// Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-map.on('click', 'Bremen', 'Schnoor', 'Mhle', function (e) {
-    map.flyTo({
-    center: e.features[0].geometry.coordinates
+// Show markers
+map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Bremen'], // Roland
+      layers: ['Schnoor'], // Schnoor
+      layers: ['Mhle'] // Mühle
     });
-});
+  
+    if (!features.length) {
+      return;
+    }
+  
+    var feature = features[0];
+  
+    // Tipp Pop-Up
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
 
-// // Show markers
-// map.on('click', function(e) {
-//     var features = map.queryRenderedFeatures(e.point, {
-//       layers: ['Bremen'], // Roland
-//       layers: ['Schnoor'], // Schnoor
-//       layers: ['Mhle'] // Mühle
-//     });
-  
-//     if (!features.length) {
-//       return;
-//     }
-  
-//     var feature = features[0];
-  
-//     // Tipp Pop-Up
-//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
-//       .setLngLat(feature.geometry.coordinates)
-//       .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-//       .addTo(map);
-//   });
-  
+   // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+    map.on('click', 'Bremen', function (e) {
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
 
+    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+    map.on('click', 'Schnoor', function (e) {
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
 
+    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+    map.on('click', 'Mhle', function (e) {
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+
+/*
 //sidebar
 new mapboxgl.Marker().setLngLat(center).addTo(map);
  
@@ -89,21 +103,4 @@ elem.className = classes.join(' ');
  
 map.on('load', function () {
 toggleSidebar('left');
-});
-
-    
-// map.on('load', function () {
-//     // add source and layer for markers
-//     map.addSource('museums', {
-//     type: 'point',
-//     url: 'mapbox://mapbox.2opop9hr'
-//     });
-//     map.addLayer({
-//         'id': 'markers',
-//         'type': 'point',
-//         'source': 'markers',
-//         'layout': {
-//         // make layer visible by default
-//         'visibility': 'visible'
-//         },
-//     });
+});*/
