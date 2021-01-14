@@ -24,3 +24,51 @@ map.addControl(
 );
 
 // Marker
+
+//Roland Ziel
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07587, 8.8073])
+.addTo(map);
+//Roland Tipps
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07532, 8.80301])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07538, 8.80436])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07472, 8.80499])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.0735, 8.81277])
+.addTo(map);
+
+//Mühle Ziel
+var marker = new mapboxgl.Marker()
+.setLngLat([53.08016, 8.80689])
+.addTo(map);
+//Mühle Tipps
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07907, 8.81116])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07851, 8.80457])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07642, 8.80949])
+.addTo(map);
+
+//Schnoor Ziel
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07297, 8.80925])
+.addTo(map);
+//Schnoor Tipps
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07384, 8.80776])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07366, 8.80995])
+.addTo(map);
+var marker = new mapboxgl.Marker()
+.setLngLat([53.07112, 8.8114])
+.addTo(map);
