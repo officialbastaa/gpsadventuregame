@@ -38,29 +38,27 @@ map.on('click', function(e) {
   
     var feature = features[0];
   
-    // Tipp Pop-Up
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-      .addTo(map);
-  });
+// Tipp Pop-Up
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+});
 
    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-    map.on('click', 'Bremen', function (e) {
+    map.on('click', 'Roland', function (e) {
         map.flyTo({
         center: e.features[0].geometry.coordinates
         });
     });  
-
     // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
     map.on('click', 'Schnoor', function (e) {
         map.flyTo({
         center: e.features[0].geometry.coordinates
         });
     });  
-
     // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-    map.on('click', 'Mhle', function (e) {
+    map.on('click', 'Muehle', function (e) {
         map.flyTo({
         center: e.features[0].geometry.coordinates
         });
