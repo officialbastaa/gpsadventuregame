@@ -1,10 +1,10 @@
-// Map
+// Map ----------------------------------------------------!
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXhwZXJpbWVudGFsbW9iaWxlcGxheSIsImEiOiJja2p2Y2xydTIwN2s0MndvYWpmazB4M2IzIn0.q3CYZLs_taS8F7-pA1eF7g';
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
 center: [8.8017, 53.0793], // starting position in Bremen [lng, lat]
-zoom: 12 // starting zoom
+zoom: 12, // starting zoom
 });
 
 // Add Fullscreen Button
@@ -23,23 +23,73 @@ map.addControl(
     })
 );
 
-// Marker
+// Show markers
+map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Bremen'] // Roland
+      layers: ['Schnoor'] // Schnoor
+      layers: ['Mhle'] // Mühle
+    });
+  
+    if (!features.length) {
+      return;
+    }
+  
+    var feature = features[0];
+  
+    // Tipp Pop-Up
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
+  
+
+
+// 
+// map.on('load', function () {
+//     // add source and layer for markers
+//     map.addSource('museums', {
+//     type: 'point',
+//     url: 'mapbox://mapbox.2opop9hr'
+//     });
+//     map.addLayer({
+//         'id': 'markers',
+//         'type': 'point',
+//         'source': 'markers',
+//         'layout': {
+//         // make layer visible by default
+//         'visibility': 'visible'
+//         },
+//     });
+    
+// Marker -------------------------------------------------!
 
 //Roland Ziel
-var marker = new mapboxgl.Marker()
+/*var marker = new mapboxgl.Marker({​​
+    color: "#5AC8FA",
+    }​​)
 .setLngLat([53.07587, 8.8073])
 .addTo(map);
-//Roland Tipps
-var marker = new mapboxgl.Marker()
+Roland Tipps
+var marker = new mapboxgl.Marker({​​
+    color: "#5AC8FA",
+    }​​)
 .setLngLat([53.07532, 8.80301])
 .addTo(map);
-var marker = new mapboxgl.Marker()
+var marker = new mapboxgl.Marker({​​
+    color: "#5AC8FA",
+    }​​)
 .setLngLat([53.07538, 8.80436])
 .addTo(map);
-var marker = new mapboxgl.Marker()
+var marker = new mapboxgl.Marker({​​
+    color: "#5AC8FA",
+    }​​)
 .setLngLat([53.07472, 8.80499])
 .addTo(map);
-var marker = new mapboxgl.Marker()
+var marker = new mapboxgl.Marker({​​
+    color: "#5AC8FA",
+    }​​)
 .setLngLat([53.0735, 8.81277])
 .addTo(map);
 
@@ -59,6 +109,7 @@ var marker = new mapboxgl.Marker()
 .addTo(map);
 
 //Schnoor Ziel
+
 var marker = new mapboxgl.Marker()
 .setLngLat([53.07297, 8.80925])
 .addTo(map);
@@ -71,4 +122,4 @@ var marker = new mapboxgl.Marker()
 .addTo(map);
 var marker = new mapboxgl.Marker()
 .setLngLat([53.07112, 8.8114])
-.addTo(map);
+.addTo(map);*/
