@@ -4,7 +4,7 @@ var center = [8.8017, 53.0793]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
-zoom: 13, // starting zoom
+zoom: 12, // starting zoom
 center: center,
 });
 
