@@ -4,7 +4,7 @@ var center = [8.8017, 53.0793]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
-zoom: 16, // starting zoom
+zoom: 13, // starting zoom
 center: center,
 });
 
@@ -23,6 +23,28 @@ map.addControl(
         trackUserLocation: true
     })
 );
+/* ------------------------------------------------------------------------ */
+var layersOn = "No";
+
+$( "#off" ).click(function() {
+
+	if (layersOn === "No") {
+    map.addLayer(Roland);
+    layersOn = "Yes";
+  } else {
+    map.removeLayer(Roland);
+    layersOn = "No";
+  }
+});
+
+    var Roland = new L.LayerGroup();
+
+    L.marker([8.807159303924887, 53.07584578278185]).bindPopup('This is marker numero uno').addTo(Roland),
+    L.marker([8.807338193881588, 53.07571038022416]).bindPopup('This is Denver, CO.').addTo(Roland),
+    L.marker([8.806810174575572, 53.07599473468757]).bindPopup('This is Aurora, CO.').addTo(Roland),
+
+/* ------------------------------------------------------------------------ */
+
 
 // Schnoor -----------------------------------------------------------------!
 map.on('click', function(e) {
@@ -216,7 +238,7 @@ map.on('load', function () {
         'source-layer': 'Muehle'
         });
 });
-// enumerate ids of the layers
+// // enumerate ids of the layers
 var toggleableLayerIds = ['Roland', 'Mühle', 'Schnoor'];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {

@@ -54,30 +54,21 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 50px -25px black;
 }
-
 .rounded-rect-content {
     background: white;
     border-radius: 10px;
 }
-.flex-top {
-    position: absolute;
-    display: flex-start;
-    justify-content: center;
-    align-items: center;
-}
+.flex-down {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}  
 .flex-center {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.flex-bottom {
-    position: absolute;
-    display: flex-end;
-    justify-content: center;
-    align-items: center;
-}
-         
+}  
 .flex-center.left {
     left: 0px;
 }
@@ -89,7 +80,6 @@ body {
     font-size: 32px;
     color: #114e74;
 }
-
 .sidebar-content {
     position: absolute;
     width: 95%;
