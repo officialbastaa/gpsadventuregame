@@ -32,17 +32,17 @@ map.addControl(
 //       layers: ['Schnoor'] // Schnoor
 //     });
         
-    if (!features.length) {
-      return;
-    }
-    var feature = features[0];
+//     if (!features.length) {
+//       return;
+//     }
+//     var feature = features[0];
   
-// Tipp Pop-Up
-var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
-});
+// // Tipp Pop-Up
+// var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//     .setLngLat(feature.geometry.coordinates)
+//     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+//     .addTo(map);
+// });
 
    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
     map.on('click', 'Roland', function (e) {
@@ -115,8 +115,6 @@ elem.className = classes.join(' ');
 map.on('load', function () {
 // Sidebar
     toggleSidebar('left');
-});
-
 // Menu
     map.addSource('Roland', {
         type: 'vector',
@@ -130,6 +128,7 @@ map.on('load', function () {
         type: 'vector',
         url: 'mapbox://mapbox.2opop9hr'
     });
+});
 
 // enumerate ids of the layers
 var toggleableLayerIds = ['Roland', 'Schnoor', 'Muehle'];
