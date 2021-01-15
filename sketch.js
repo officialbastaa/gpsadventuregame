@@ -173,7 +173,7 @@ map.on('load', function () {
 // Roland
     map.addSource('Roland', {
         type: 'vector',
-        url: 'mapbox://mapbox.2opop9hr'
+        url: 'experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-806mo'
     });
     map.addLayer({
         'id': 'Roland',
@@ -188,7 +188,7 @@ map.on('load', function () {
 // Schnoor
     map.addSource('Schnoor', {
         type: 'vector',
-        url: 'mapbox://mapbox.2opop9hr'
+        url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
     });
     map.addLayer({
         'id': 'Schnoor',
@@ -203,7 +203,7 @@ map.on('load', function () {
 // Muehle
     map.addSource('Muehle', {
         type: 'vector',
-        url: 'mapbox://mapbox.2opop9hr'
+        url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
     });
     map.addLayer({
         'id': 'Muehle',

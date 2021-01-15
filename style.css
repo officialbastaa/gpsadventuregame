@@ -67,9 +67,7 @@ body {
     align-items: center;
 }
 .flex-center-content {
-    position: absolute;
     display: flex;
-    justify-content: space-around;
 }
          
 .flex-center.left {
