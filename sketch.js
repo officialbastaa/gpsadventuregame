@@ -27,8 +27,8 @@ map.addControl(
 // Show markers
 map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Bremen'], // Roland
-      layers: ['Mhle'], // Mühle
+      layers: ['Roland'], // Roland
+      layers: ['Muehle'], // Mühle
       layers: ['Schnoor'] // Schnoor
     });
       
@@ -46,7 +46,7 @@ var popup = new mapboxgl.Popup({ offset: [0, -15] })
 });
 
    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-    map.on('click', 'Bremen', function (e) {
+    map.on('click', 'Roland', function (e) {
         map.flyTo({
         center: e.features[0].geometry.coordinates
         });
@@ -58,7 +58,7 @@ var popup = new mapboxgl.Popup({ offset: [0, -15] })
         });
     });  
     // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-    map.on('click', 'Mhle', function (e) {
+    map.on('click', 'Muehle', function (e) {
         map.flyTo({
         center: e.features[0].geometry.coordinates
         });
@@ -118,7 +118,7 @@ map.on('load', function () {
     });
 
 // enumerate ids of the layers
-var toggleableLayerIds = ['contours', 'museums'];
+var toggleableLayerIds = ['Roland', 'Schnoor', 'Muehle'];
 
 // set up the corresponding toggle button for each layer
 for (var i = 0; i < toggleableLayerIds.length; i++) {
