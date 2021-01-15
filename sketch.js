@@ -24,6 +24,80 @@ map.addControl(
     })
 );
 
+// Schnoor -----------------------------------------------------------------!
+map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Schnoor'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+  
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
+// Roland -----------------------------------------------------------------!
+  map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Roland'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+  
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
+  // Mühle -----------------------------------------------------------------!
+  map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Muehle'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+  
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
+
+   // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+    map.on('click', 'Schnoor', function (e) {
+        // Center
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+    // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
+    map.on('click', 'Roland', function (e) {
+        // Center
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+    // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
+    map.on('click', 'Muehle', function (e) {
+        // Center
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+
 // // Pop-Up Markers
 // map.on('click', function(e) {
 //     let f = map.queryRenderedFeatures(e.point, { layers: ['Roland'] });
@@ -41,45 +115,23 @@ map.addControl(
 //       console.log(f[0]);
 //     }
 
-map.on('click', function(e) {
-    let f = map.queryRenderedFeatures(e.point, { layers: ['Roland','Schnoor','Muehle'] });
-    if (f.length) {
-      console.log(f[0]);  //topmost feature
-    }
-    var feature = features[0];
+// map.on('click', function(e) {
+//     let f = map.queryRenderedFeatures(e.point, { layers: ['Roland','Schnoor','Muehle'] });
+//     if (f.length) {
+//       console.log(f[0]);  //topmost feature
+//     }
+//     var feature = features[0];
 
-    // map.flyTo({
-    //     center: e.features[0].geometry.coordinates
-    //     });
+//     // map.flyTo({
+//     //     center: e.features[0].geometry.coordinates
+//     //     });
   
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-      .addTo(map);
-});
+//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//       .setLngLat(feature.geometry.coordinates)
+//       .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+//       .addTo(map);
+// });
     
-   // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-    map.on('click', 'Roland', function (e) {
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
-    // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
-    map.on('click', 'Schnoor', function (e) {
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
-    // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-    map.on('click', 'Muehle', function (e) {
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
-
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
  
@@ -166,7 +218,7 @@ map.on('load', function () {
 });
 
 // enumerate ids of the layers
-var toggleableLayerIds = ['Roland', 'Muehle', 'Schnoor'];
+var toggleableLayerIds = ['Roland', 'Mühle', 'Schnoor'];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];    
