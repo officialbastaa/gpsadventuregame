@@ -24,25 +24,24 @@ map.addControl(
     })
 );
 /* ------------------------------------------------------------------------ */
-var layersOn = "No";
+// var layersOn = "No";
 
-$( "#off" ).click(function() {
+// $( "#off" ).click(function() {
 
-	if (layersOn === "No") {
-    map.addLayer(Roland);
-    layersOn = "Yes";
-  } else {
-    map.removeLayer(Roland);
-    layersOn = "No";
-  }
-});
+// 	if (layersOn === "No") {
+//     map.addLayer(Roland);
+//     layersOn = "Yes";
+//   } else {
+//     map.removeLayer(Roland);
+//     layersOn = "No";
+//   }
+// });
 
-    var Roland = new L.LayerGroup();
+//     var Roland = new L.LayerGroup();
 
-    L.marker([8.807159303924887, 53.07584578278185]).bindPopup('This is marker numero uno').addTo(Roland),
-    L.marker([8.807338193881588, 53.07571038022416]).bindPopup('This is Denver, CO.').addTo(Roland),
-    L.marker([8.806810174575572, 53.07599473468757]).bindPopup('This is Aurora, CO.').addTo(Roland),
-
+//     L.marker([8.807159303924887, 53.07584578278185]).bindPopup('This is marker numero uno').addTo(Roland),
+//     L.marker([8.807338193881588, 53.07571038022416]).bindPopup('This is Denver, CO.').addTo(Roland),
+//     L.marker([8.806810174575572, 53.07599473468757]).bindPopup('This is Aurora, CO.').addTo(Roland),
 /* ------------------------------------------------------------------------ */
 
 
