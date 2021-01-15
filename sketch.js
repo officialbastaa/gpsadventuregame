@@ -24,59 +24,49 @@ map.addControl(
     })
 );
 
-// // Show markers
-// map.on('click', function(e) {
-//     var features = map.queryRenderedFeatures(e.point, {
-//       layers: ['Roland'], // Roland
-//       layers: ['Muehle'], // Mühle
-//       layers: ['Schnoor'] // Schnoor
-//     });
-        
-//     if (!features.length) {
-//       return;
-//     }
-//     var feature = features[0];
-  
-// // Tipp Pop-Up
-// var popup = new mapboxgl.Popup({ offset: [0, -15] })
-//     .setLngLat(feature.geometry.coordinates)
-//     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-//     .addTo(map);
-// });
+// Pop-Up Markers
+map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Roland'], // 
+      layers: ['Muehle'], // 
+      layers: ['Schnoor'], // 
+    });
+        if (!features.length) {
+            return;
+        }
+    var feature = features[0];
 
-   // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-    map.on('click', 'Roland', function (e) {
-        //Pop-Up
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-        var description = e.features[0].properties.title;
-        // Center
-        map.flyTo({
+    map.flyTo({
         center: e.features[0].geometry.coordinates
         });
-    });  
-    // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
-    map.on('click', 'Schnoor', function (e) {
-        //Pop-Up
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-        var description = e.features[0].properties.title;
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
-    // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-    map.on('click', 'Muehle', function (e) {
-        //Pop-Up
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.description;
-        var description = e.features[0].properties.title;
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+  });
+    
+//    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+//     map.on('click', 'Roland', function (e) {
+//         // Center
+//         map.flyTo({
+//         center: e.features[0].geometry.coordinates
+//         });
+//     });  
+//     // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
+//     map.on('click', 'Schnoor', function (e) {
+//         // Center
+//         map.flyTo({
+//         center: e.features[0].geometry.coordinates
+//         });
+//     });  
+//     // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
+//     map.on('click', 'Muehle', function (e) {
+//         // Center
+//         map.flyTo({
+//         center: e.features[0].geometry.coordinates
+//         });
+//     });  
 
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
@@ -162,4 +152,47 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     var layers = document.getElementById('menu');
     layers.appendChild(link);
 }
-    
+        // Game Start Screen
+        let start = document.querySelector('#brand');
+        let ex = 10;
+        function swing(element) {
+
+        function update(time) {
+            
+            const x = Math.sin(time / 1231) * ex;
+            const y = Math.sin(time / 1458) * ex;
+
+            element.style.transform = [
+                `rotateX(${x}deg)`,
+                `rotateY(${y}deg)`
+            ].join(' ');
+
+            requestAnimationFrame(update);
+        }
+        update(0); 
+        }
+
+        swing(start);
+
+
+        let start_button = start.querySelector('a');
+        let og_color = start_button.style.color;
+        let inter = 0;
+
+        start.addEventListener('mouseover', (e) => {
+        
+        ex = 20;  
+        inter = setInterval(()=>{  
+            start_button.style.color = '#'+Math.floor(Math.random()*16777215).toString(16); 
+        }, 1000); 
+        
+        });
+
+
+        start.addEventListener('mouseout', (e) => {
+        
+        ex = 10;
+        clearInterval(inter);
+        start_button.style.color = og_color; 
+        
+         });
