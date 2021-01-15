@@ -44,7 +44,7 @@ map.addControl(
 map.on('click', function(e) {
     let f = map.queryRenderedFeatures(e.point, { layers: ['Roland','Schnoor','Muehle'] });
     if (f.length) {
-      console.log(f[0]);  //topmost feature
+      console.log(f[2]);  //topmost feature
     }
     var feature = features[0];
 
@@ -118,33 +118,69 @@ map.on('load', function () {
 // Sidebar
     toggleSidebar('left');
 // Menu
+// Roland
     map.addSource('Roland', {
         type: 'vector',
         url: 'mapbox://mapbox.2opop9hr'
     });
+    map.addLayer({
+        'id': 'Roland',
+        'type': 'Symbol',
+        'source': 'Roland',
+        'layout': {
+        // make layer visible by default
+        'visibility': 'visible'
+        },
+        'source-layer': 'Roland'
+        });
+// Schnoor
     map.addSource('Schnoor', {
         type: 'vector',
         url: 'mapbox://mapbox.2opop9hr'
     });
+    map.addLayer({
+        'id': 'Schnoor',
+        'type': 'Symbol',
+        'source': 'Schnoor',
+        'layout': {
+        // make layer visible by default
+        'visibility': 'visible'
+        },
+        'source-layer': 'Schnoor'
+        });
+// Muehle
     map.addSource('Muehle', {
         type: 'vector',
         url: 'mapbox://mapbox.2opop9hr'
     });
+    map.addLayer({
+        'id': 'Muehle',
+        'type': 'Symbol',
+        'source': 'Muehle',
+        'layout': {
+        // make layer visible by default
+        'visibility': 'visible'
+        },
+        'source-layer': 'Muehle'
+        });
 });
 
 // enumerate ids of the layers
 var toggleableLayerIds = ['Roland', 'Muehle', 'Schnoor'];
 
-var link = document.createElement('a');
-link.href = '#';
-link.className = 'active';
-link.textContent = "toggle layers";
-link.onclick = function (e) {
-    for(var index in toggleableLayerIds) {
-      var clickedLayer = toggleableLayerIds[index];
-      e.preventDefault();
-      e.stopPropagation();
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+    var id = toggleableLayerIds[i];    
 
+    var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
+    
+    link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+        
       var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
       if (visibility === 'visible') {
