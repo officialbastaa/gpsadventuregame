@@ -59,15 +59,23 @@ body {
     background: white;
     border-radius: 10px;
 }
-         
+.flex-top {
+    position: absolute;
+    display: flex-start;
+    justify-content: center;
+    align-items: center;
+}
 .flex-center {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.flex-center-content {
-    display: flex;
+.flex-bottom {
+    position: absolute;
+    display: flex-end;
+    justify-content: center;
+    align-items: center;
 }
          
 .flex-center.left {

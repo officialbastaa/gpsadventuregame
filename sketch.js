@@ -4,7 +4,7 @@ var center = [8.8017, 53.0793]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
-zoom: 12, // starting zoom
+zoom: 16, // starting zoom
 center: center,
 });
 
@@ -170,9 +170,9 @@ map.on('load', function () {
 // Sidebar
     toggleSidebar('left');
 // Menu
-// Roland
+// Roland (Source and Layer)
     map.addSource('Roland', {
-        type: 'vector',
+        type: 'Symbol',
         url: 'experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-806mo'
     });
     map.addLayer({
@@ -185,9 +185,9 @@ map.on('load', function () {
         },
         'source-layer': 'Roland'
         });
-// Schnoor
+// Schnoor (Source and Layer)
     map.addSource('Schnoor', {
-        type: 'vector',
+        type: 'Symbol',
         url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
     });
     map.addLayer({
@@ -200,9 +200,9 @@ map.on('load', function () {
         },
         'source-layer': 'Schnoor'
         });
-// Muehle
+// Muehle (Source and Layer)
     map.addSource('Muehle', {
-        type: 'vector',
+        type: 'Symbol',
         url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
     });
     map.addLayer({
@@ -216,7 +216,6 @@ map.on('load', function () {
         'source-layer': 'Muehle'
         });
 });
-
 // enumerate ids of the layers
 var toggleableLayerIds = ['Roland', 'Mühle', 'Schnoor'];
 
