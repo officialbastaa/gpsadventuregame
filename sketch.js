@@ -24,23 +24,28 @@ map.addControl(
     })
 );
 
-// Pop-Up Markers
-map.on('click', function(e) {
-    let f = map.queryRenderedFeatures(e.point, { layers: ['Roland'] });
-    if (f.length) {
-      console.log(f[0]);
-      return;
-    } 
-    f = map.queryRenderedFeatures(e.point, { layers: ['Schnoor'] });
-    if (f.length) {
-      console.log(f[0]);
-      return;
-    }
-    f = map.queryRenderedFeatures(e.point, { layers: ['Muehle'] });
-    if (f.length) {
-      console.log(f[0]);
-    }
+// // Pop-Up Markers
+// map.on('click', function(e) {
+//     let f = map.queryRenderedFeatures(e.point, { layers: ['Roland'] });
+//     if (f.length) {
+//       console.log(f[0]);
+//       return;
+//     } 
+//     f = map.queryRenderedFeatures(e.point, { layers: ['Schnoor'] });
+//     if (f.length) {
+//       console.log(f[0]);
+//       return;
+//     }
+//     f = map.queryRenderedFeatures(e.point, { layers: ['Muehle'] });
+//     if (f.length) {
+//       console.log(f[0]);
+//     }
 
+map.on('click', function(e) {
+    let f = map.queryRenderedFeatures(e.point, { layers: ['Roland','Schnoor','Muehle'] });
+    if (f.length) {
+      console.log(f[0]);  //topmost feature
+    }
     var feature = features[0];
 
     map.flyTo({
@@ -128,37 +133,33 @@ map.on('load', function () {
 });
 
 // enumerate ids of the layers
-var toggleableLayerIds = ['Roland', 'Schnoor', 'Mühle'];
+var toggleableLayerIds = ['Roland', 'Muehle', 'Schnoor'];
 
-// set up the corresponding toggle button for each layer
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-    var id = toggleableLayerIds[i];
-     
-    var link = document.createElement('a');
-    link.href = '#';
-    link.className = 'active';
-    link.textContent = id;
-     
-    link.onclick = function (e) {
-        var clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
-     
-    var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-     
-    // toggle layer visibility by changing the layout object's visibility property
-    if (visibility === 'visible') {
-        map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-        this.className = '';
-    } else {
-        this.className = 'active';
-        map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+var link = document.createElement('a');
+link.href = '#';
+link.className = 'active';
+link.textContent = "toggle layers";
+link.onclick = function (e) {
+    for(var index in toggleableLayerIds) {
+      var clickedLayer = toggleableLayerIds[index];
+      e.preventDefault();
+      e.stopPropagation();
+
+      var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+      if (visibility === 'visible') {
+          map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+          this.className = '';
+      } else {
+          this.className = 'active';
+          map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+      }
     }
-    };
-     
+
+};
     var layers = document.getElementById('menu');
     layers.appendChild(link);
-}
+
         // Game Start Screen
         let start = document.querySelector('#brand');
         let ex = 10;
