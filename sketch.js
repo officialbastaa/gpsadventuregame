@@ -44,13 +44,13 @@ map.addControl(
 map.on('click', function(e) {
     let f = map.queryRenderedFeatures(e.point, { layers: ['Roland','Schnoor','Muehle'] });
     if (f.length) {
-      console.log(f[2]);  //topmost feature
+      console.log(f[0]);  //topmost feature
     }
     var feature = features[0];
 
-    map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
+    // map.flyTo({
+    //     center: e.features[0].geometry.coordinates
+    //     });
   
     var popup = new mapboxgl.Popup({ offset: [0, -15] })
       .setLngLat(feature.geometry.coordinates)
@@ -58,27 +58,27 @@ map.on('click', function(e) {
       .addTo(map);
 });
     
-//    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-//     map.on('click', 'Roland', function (e) {
-//         // Center
-//         map.flyTo({
-//         center: e.features[0].geometry.coordinates
-//         });
-//     });  
-//     // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
-//     map.on('click', 'Schnoor', function (e) {
-//         // Center
-//         map.flyTo({
-//         center: e.features[0].geometry.coordinates
-//         });
-//     });  
-//     // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-//     map.on('click', 'Muehle', function (e) {
-//         // Center
-//         map.flyTo({
-//         center: e.features[0].geometry.coordinates
-//         });
-//     });  
+   // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+    map.on('click', 'Roland', function (e) {
+        // Center
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+    // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
+    map.on('click', 'Schnoor', function (e) {
+        // Center
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
+    // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
+    map.on('click', 'Muehle', function (e) {
+        // Center
+        map.flyTo({
+        center: e.features[0].geometry.coordinates
+        });
+    });  
 
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
@@ -190,11 +190,10 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
           this.className = 'active';
           map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
       }
-    }
-
-};
+    };
     var layers = document.getElementById('menu');
     layers.appendChild(link);
+}
 
         // Game Start Screen
         let start = document.querySelector('#brand');
@@ -240,3 +239,8 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
         start_button.style.color = og_color; 
         
          });
+
+
+
+
+         
