@@ -26,14 +26,21 @@ map.addControl(
 
 // Pop-Up Markers
 map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Roland'], // 
-      layers: ['Muehle'], // 
-      layers: ['Schnoor'], // 
-    });
-        if (!features.length) {
-            return;
-        }
+    let f = map.queryRenderedFeatures(e.point, { layers: ['Roland'] });
+    if (f.length) {
+      console.log(f[0]);
+      return;
+    } 
+    f = map.queryRenderedFeatures(e.point, { layers: ['Schnoor'] });
+    if (f.length) {
+      console.log(f[0]);
+      return;
+    }
+    f = map.queryRenderedFeatures(e.point, { layers: ['Muehle'] });
+    if (f.length) {
+      console.log(f[0]);
+    }
+
     var feature = features[0];
 
     map.flyTo({
@@ -44,7 +51,7 @@ map.on('click', function(e) {
       .setLngLat(feature.geometry.coordinates)
       .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
       .addTo(map);
-  });
+});
     
 //    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
 //     map.on('click', 'Roland', function (e) {
@@ -121,7 +128,7 @@ map.on('load', function () {
 });
 
 // enumerate ids of the layers
-var toggleableLayerIds = ['Roland', 'Schnoor', 'Muehle'];
+var toggleableLayerIds = ['Roland', 'Schnoor', 'Mühle'];
 
 // set up the corresponding toggle button for each layer
 for (var i = 0; i < toggleableLayerIds.length; i++) {

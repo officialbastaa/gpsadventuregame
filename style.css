@@ -61,23 +61,36 @@ body {
 }
          
 .flex-center {
-position: absolute;
-display: flex;
-justify-content: center;
-align-items: center;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-top {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+.flex-bottom {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
 }
          
 .flex-center.left {
-left: 0px;
+    left: 0px;
 }
          
 .sidebar-content {
-position: absolute;
-width: 95%;
-height: 95%;
-font-family: Arial, Helvetica, sans-serif;
-font-size: 32px;
-color: #114e74;
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    color: #114e74;
 }
          
 .sidebar-toggle {
