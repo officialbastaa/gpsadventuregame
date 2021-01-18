@@ -16,18 +16,28 @@
 <div id="map">
 <!-- Sidebar -->
     <div id="left" class="sidebar flex-center left collapsed">
-        <div id="menu"></div>
-        <div class="sidebar-content rounded-rect flex-center">
+        <button onclick="myFunction()" class="dropdown-btn">Mission
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div id="myDropdown" class="dropdown-container">
+            <a href="#">Roland</a>
+            <a href="#">Schnoor</a>
+            <a href="#">Mühle</a>
+        </div>
+        <a href="#services">Items</a>
+        <a href="#clients">Help</a>
+              <div class="sidebar-content rounded-rect flex-center">
+            <div class="dropdown">
+                <button class="dropbtn">Routen</button>
+                <div class="dropdown-content">
+                    <a href="#">Roland</a>
+                    <a href="#">Schnoor</a>
+                    <a href="#">Mühle</a>
+                </div>
+            </div>
+
     <!--   <div class="flex-down">  -->
                 <div class="rounded-rect-content sidebar-content-butten flex-center" onclick="" >
-                    <div class="dropdown">
-                        <button class="dropbtn">Routen</button>
-                        <div class="dropdown-content">
-                            <a href="#">Roland</a>
-                            <a href="#">Schnoor</a>
-                            <a href="#">Mühle</a>
-                        </div>
-                    </div>
                     <!--
                     <button onclick="mission.html">Missions</button>
                     <button onclick="items.html">Items</button>
