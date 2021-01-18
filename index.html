@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <title>GPS Adventure Game</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
 
 <!-- Mapbox CSS -->
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
@@ -12,17 +12,17 @@
 </head>
 
 <body>
-<nav id="menu"></nav>
-<!-- <div id="off">
-    Klicke hier für Roland
-</div> -->
+<!--    <nav id="menu"></nav>   -->
 <div id="map">
 <!-- Sidebar -->
     <div id="left" class="sidebar flex-center left collapsed">
         <div class="sidebar-content rounded-rect flex-center">
-            <div class="flex-down">            
+    <!--   <div class="flex-down">  -->
                 <div class="rounded-rect-content sidebar-content-butten flex-center" onclick="" >
-                    Missions
+                    <div id="menu"></div>
+                    <button onclick="mission.html">Missions</button>
+                    <button onclick="items.html">Items</button>
+                    <button onclick="help.html">Help</button>
                 </div>
                 <div class="rounded-rect-content sidebar-content-butten flex-center" onclick="">
                     Items
@@ -30,7 +30,7 @@
                 <div class="rounded-rect-content sidebar-content-butten flex-center" onclick="">
                     Help
                 </div>
-            </div>
+    <!--    </div>  -->
             <div class="sidebar-toggle rounded-rect left" onclick="toggleSidebar('left')">
             &rarr;
             </div>
