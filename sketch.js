@@ -148,14 +148,14 @@ map.on('load', function () {
     toggleSidebar('left');
 // Menu
 // Roland (Source and Layer)
-    map.addSource('Basic', {
-        type: 'vector',
-        url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
+    // map.addSource('Basic', {
+    //     type: 'vector',
+    //     url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
     });
     map.addLayer({
         'id': 'Roland',
         'type': 'symbol',
-        'source': 'Basic',
+        'source': 'composite',
         'layout': {
           'visibility': 'none'
         },
@@ -169,7 +169,7 @@ map.on('load', function () {
     map.addLayer({
         'id': 'Schnoor',
         'type': 'symbol',
-        'source': 'Basic',
+        'source': 'composite',
         'layout': {
           'visibility': 'visible'
         },
@@ -183,7 +183,7 @@ map.on('load', function () {
     map.addLayer({
         'id': 'Muehle',
         'type': 'symbol',
-        'source': 'Basic',
+        'source': 'composite',
         'layout': {
           'visibility': 'none'
         },
@@ -192,7 +192,7 @@ map.on('load', function () {
 });
 
 // // enumerate ids of the layers
-var toggleableLayerIds = ['Roland', 'Mühle'];
+var toggleableLayerIds = ['Roland', 'Mühle', 'Schnoor'];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];    
