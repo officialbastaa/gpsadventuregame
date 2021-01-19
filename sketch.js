@@ -188,7 +188,6 @@ var layers = document.getElementById('menu');
 layers.appendChild(link);
 }
 
-  
 // // Camera rotation
 // function rotateCamera(timestamp) {
 //   // clamp the rotation between 0 -360 degrees
@@ -197,94 +196,7 @@ layers.appendChild(link);
 //   // Request the next frame of the animation.
 //   requestAnimationFrame(rotateCamera);
 //   }
-  
-
-// Schnoor -----------------------------------------------------------------!
-  // map.on('click', function(e) {
-  //   var features = map.queryRenderedFeatures(e.point, {
-  //     layers: ['Schnoor'] 
-  //   });
-  
-  //   if (!features.length) {
-  //     return;
-  //   }
-  
-  //   var feature = features[0];
-  
-  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
-  //     .setLngLat(feature.geometry.coordinates)
-  //     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-  //     .addTo(map);
-  // });
-// Roland -----------------------------------------------------------------!
-  //map.on('click', function(e) {
-  //   var features = map.queryRenderedFeatures(e.point, {
-  //     layers: ['Roland'] 
-  //   });
-  
-  //   if (!features.length) {
-  //     return;
-  //   }
-  
-  //   var feature = features[0];
-  
-  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
-  //     .setLngLat(feature.geometry.coordinates)
-  //     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-  //     .addTo(map);
-  // });
-
-  // Interactive marker (1)
-//   map.on('click', function(e) {
-//     var features = map.queryRenderedFeatures(e.point, {
-//       layers: ['Muehle']
-//     });
-
-//     if (!features.length) {
-//       return;
-//     }
-  
-//     var feature = features[0];
-
-//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
-//     .setLngLat(feature.geometry.coordinates)
-//     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-//     .addTo(map);
-// });
-
-  // Mühle -----------------------------------------------------------------!
-  // map.on('click', function(e) {
-  //   var features = map.queryRenderedFeatures(e.point, {
-  //     layers: ['Muehle'] 
-  //   });
-  
-  //   if (!features.length) {
-  //     return;
-  //   }
-  
-  //   var feature = features[0];
-  
-  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
-  //     .setLngLat(feature.geometry.coordinates)
-  //     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-  //     .addTo(map);
-  // });
-  
-    // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
-    // map.on('click', 'Roland', function (e) {
-    //     // Center
-    //     map.flyTo({
-    //     center: e.features[0].geometry.coordinates
-    //     });
-    // });  
-    // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-    // map.on('click', 'Muehle', function (e) {
-    //     // Center
-    //     map.flyTo({
-    //     center: e.features[0].geometry.coordinates
-    //     });
-    // });  
-    
+      
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
 function toggleSidebar(id) {
