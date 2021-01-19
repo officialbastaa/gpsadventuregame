@@ -30,21 +30,18 @@ map.on('load', function () {
 
   // Sidebar
   toggleSidebar('left');
-  // Menu
+
   // Roland (Source and Layer)
-  //     map.addSource('Roland', {
-  //         type: 'vector',
-  //         url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
-  //     });
-  //     map.addLayer({
-  //         'id': 'Roland',
-  //         'type': 'symbol',
-  //         'source': 'composite',
-  //         'layout': {
-  //           'visibility': 'none'
-  //         },
-  //         'source-layer': 'roland'
-  //         });
+  map.addLayer({
+    'id': 'roland',
+    'type': 'symbol',
+    'source': {
+      type: 'vector',
+      url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
+    },
+    'layout': { 'visibility': 'visible' },
+    'source-layer': 'Roland'
+  });
 
   // Schnoor (Source and Layer)
   map.addLayer({
@@ -105,6 +102,24 @@ map.on('load', function () {
     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
     .addTo(map);
   });
+  
+  // Interactive marker (3)
+  map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['roland'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+    
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+  });
 
   // Center on marker (1)
   map.on('click', 'schnoor', function (e) {
@@ -120,6 +135,14 @@ map.on('load', function () {
     });
   });  
 
+  // Center on marker (3)
+  map.on('click', 'roland', function (e) {
+    map.flyTo({
+      center: e.features[0].geometry.coordinates
+    });
+  });  
+
+
   // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
   map.on('mouseenter', 'symbols', function () {
     map.getCanvas().style.cursor = 'pointer';
@@ -133,7 +156,7 @@ map.on('load', function () {
 
 //Menu --------------------------------!>
 // enumerate ids of the layers
-var toggleableLayerIds = ['schnoor', 'muehle'];
+var toggleableLayerIds = ['schnoor', 'muehle', 'roland'];
  
 // set up the corresponding toggle button for each layer
 for (var i = 0; i < toggleableLayerIds.length; i++) {
