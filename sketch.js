@@ -1,10 +1,10 @@
 // Map ----------------------------------------------------!
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXhwZXJpbWVudGFsbW9iaWxlcGxheSIsImEiOiJja2p2Y2xydTIwN2s0MndvYWpmazB4M2IzIn0.q3CYZLs_taS8F7-pA1eF7g';
-var center = [8.8017, 53.0793]; // starting position in Bremen [lng, lat]
+var center = [8.8044, 53.0776]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
-zoom: 12, // starting zoom
+zoom: 13.5, // starting zoom
 center: center,
 });
 
