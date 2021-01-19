@@ -28,7 +28,7 @@ map.on('load', function () {
   // Start the animation.
   //  rotateCamera(0);
   // Sidebar
-      toggleSidebar('left');
+  toggleSidebar('left');
   // Menu
   // Roland (Source and Layer)
   //     map.addSource('Roland', {
@@ -46,29 +46,99 @@ map.on('load', function () {
   //         });
 
   // Muehle (Source and Layer)
-  map.addLayer({
-    'id': 'Muehle',
-    'type': 'symbol',
-    'source': {
-      type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'  
-    },
-    'layout': { 'visibility': 'visible' },
-    'source-layer': 'Muehle'
-    });
+  // map.addLayer({
+  //   'id': 'Muehle',
+  //   'type': 'symbol',
+  //   'source': {
+  //     type: 'vector',
+  //     url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'  
+  //   },
+  //   'layout': { 'visibility': 'visible' },
+  //   'source-layer': 'Muehle'
+  //   });
   
    // Schnoor (Source and Layer)
-      map.addLayer({
-          'id': 'Schnoor',
-          'type': 'symbol',
-          'source': {
-            type: 'vector',
-            url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'  
-          },
-          'layout': { 'visibility': 'visible' },
-          'source-layer': 'Schnoor'
-        });
+    map.addLayer({
+      'id': 'schnoor',
+      'type': 'symbol',
+      'source': {
+        type: 'vector',
+        url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'  
+      },
+      'layout': { 'visibility': 'visible' },
+      'source-layer': 'Schnoor'
   });
+
+  // Interactive marker (2)
+  map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['schnoor'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+    
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+  });
+  
+  // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
+  map.on('click', 'schnoor', function (e) {
+    map.flyTo({
+      center: e.features[0].geometry.coordinates
+    });
+  });  
+
+  // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+  map.on('mouseenter', 'symbols', function () {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+   
+  // Change it back to a pointer when it leaves.
+  map.on('mouseleave', 'symbols', function () {
+    map.getCanvas().style.cursor = '';
+  });
+});
+
+//Menu --------------------------------!>
+// enumerate ids of the layers
+var toggleableLayerIds = ['Schnoor'];
+ 
+// set up the corresponding toggle button for each layer
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+var id = toggleableLayerIds[i];
+ 
+var link = document.createElement('a');
+link.href = '#';
+link.className = 'active';
+link.textContent = id;
+ 
+link.onclick = function (e) {
+var clickedLayer = this.textContent;
+e.preventDefault();
+e.stopPropagation();
+ 
+var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+ 
+// toggle layer visibility by changing the layout object's visibility property
+if (visibility === 'visible') {
+map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+this.className = '';
+} else {
+this.className = 'active';
+map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+}
+};
+ 
+var layers = document.getElementById('menu');
+layers.appendChild(link);
+}
+
   
 // // Camera rotation
 // function rotateCamera(timestamp) {
@@ -116,40 +186,22 @@ map.on('load', function () {
   // });
 
   // Interactive marker (1)
-  map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Muehle']
-    });
+//   map.on('click', function(e) {
+//     var features = map.queryRenderedFeatures(e.point, {
+//       layers: ['Muehle']
+//     });
 
-    if (!features.length) {
-      return;
-    }
+//     if (!features.length) {
+//       return;
+//     }
   
-    var feature = features[0];
+//     var feature = features[0];
 
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
-});
-
-  // Interactive marker (2)
-  map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Schnoor'] 
-    });
-
-    if (!features.length) {
-      return;
-    }
-  
-    var feature = features[0];
-
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
-});
+//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//     .setLngLat(feature.geometry.coordinates)
+//     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+//     .addTo(map);
+// });
 
   // Mühle -----------------------------------------------------------------!
   // map.on('click', function(e) {
@@ -168,14 +220,7 @@ map.on('load', function () {
   //     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
   //     .addTo(map);
   // });
-
-    // Center the map on the coordinates of any clicked symbol from the 'Roland' layer.
-    map.on('click', 'Schnoor', function (e) {
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
+  
     // Center the map on the coordinates of any clicked symbol from the 'Schnoor' layer.
     // map.on('click', 'Roland', function (e) {
     //     // Center
@@ -184,12 +229,12 @@ map.on('load', function () {
     //     });
     // });  
     // Center the map on the coordinates of any clicked symbol from the 'Mühle' layer.
-    map.on('click', 'Muehle', function (e) {
-        // Center
-        map.flyTo({
-        center: e.features[0].geometry.coordinates
-        });
-    });  
+    // map.on('click', 'Muehle', function (e) {
+    //     // Center
+    //     map.flyTo({
+    //     center: e.features[0].geometry.coordinates
+    //     });
+    // });  
     
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
@@ -223,35 +268,3 @@ duration: 1000
 // Update the class list on the element
 elem.className = classes.join(' ');
 }
- 
-// // enumerate ids of the layers
-var toggleableLayerIds = ['Mühle', 'Schnoor'];
-
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-  var id = toggleableLayerIds[i];
-   
-  var link = document.createElement('a');
-  link.href = '#';
-  link.className = 'active';
-  link.textContent = id;
-   
-  link.onclick = function (e) {
-  var clickedLayer = this.textContent;
-  e.preventDefault();
-  e.stopPropagation();
-   
-  var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-   
-  if (visibility === 'visible') {
-  map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-  this.className = '';
-  } else {
-  this.className = 'active';
-  map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-  }
-  };
-   
-  var layers = document.getElementById('menu');
-  layers.appendChild(link);
-  }
-  
