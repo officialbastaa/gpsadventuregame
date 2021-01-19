@@ -161,7 +161,20 @@ map.on('load', function () {
 //         },
 //         'source-layer': 'roland'
 //         });
-// // Schnoor (Source and Layer)
+// Muehle (Source and Layer)
+map.addSource('Muehle', {
+  type: 'vector',
+  url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
+});
+map.addLayer({
+  'id': 'Muehle',
+  'type': 'symbol',
+  'source': 'Muehle',
+  'layout': { 'visibility': 'visible' },
+  'source-layer': 'muehle'
+  });
+
+ // Schnoor (Source and Layer)
     map.addSource('Schnoor', {
         type: 'vector',
         url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
@@ -169,54 +182,40 @@ map.on('load', function () {
     map.addLayer({
         'id': 'Schnoor',
         'type': 'symbol',
-        'source': 'composite',
-        'layout': {
-          'visibility': 'visible'
-        },
+        'source': 'Schnoor',
+        'layout': { 'visibility': 'visible' },
         'source-layer': 'schnoor'
-        });
-// Muehle (Source and Layer)
-    map.addSource('Muehle', {
-        type: 'vector',
-        url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
-    });
-    map.addLayer({
-        'id': 'Muehle',
-        'type': 'symbol',
-        'source': 'composite',
-        'layout': {
-          'visibility': 'none'
-        },
-        'source-layer': 'muehle'
-        });
+      });
 });
 
 // // enumerate ids of the layers
 var toggleableLayerIds = ['Mühle', 'Schnoor'];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
-    var id = toggleableLayerIds[i];    
-
-    var link = document.createElement('a');
-    link.href = '#';
-    link.className = 'active';
-    link.textContent = id;
-    
-    link.onclick = function (e) {
-        var clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
-        
-      var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-      if (visibility === 'visible') {
-          map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-          this.className = '';
-      } else {
-          this.className = 'active';
-          map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-      }
-    };
-    var layers = document.getElementById('menu');
-    layers.appendChild(link);
-}
+  var id = toggleableLayerIds[i];
+   
+  var link = document.createElement('a');
+  link.href = '#';
+  link.className = 'active';
+  link.textContent = id;
+   
+  link.onclick = function (e) {
+  var clickedLayer = this.textContent;
+  e.preventDefault();
+  e.stopPropagation();
+   
+  var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+   
+  if (visibility === 'visible') {
+  map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+  this.className = '';
+  } else {
+  this.className = 'active';
+  map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+  }
+  };
+   
+  var layers = document.getElementById('menu');
+  layers.appendChild(link);
+  }
+  
