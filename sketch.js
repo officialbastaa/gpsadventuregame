@@ -124,23 +124,6 @@ map.on('click', function(e) {
 //     if (f.length) {
 //       console.log(f[0]);
 //     }
-
-// map.on('click', function(e) {
-//     let f = map.queryRenderedFeatures(e.point, { layers: ['Roland','Schnoor','Muehle'] });
-//     if (f.length) {
-//       console.log(f[0]);  //topmost feature
-//     }
-//     var feature = features[0];
-
-//     // map.flyTo({
-//     //     center: e.features[0].geometry.coordinates
-//     //     });
-  
-//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
-//       .setLngLat(feature.geometry.coordinates)
-//       .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-//       .addTo(map);
-// });
     
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
@@ -182,49 +165,46 @@ map.on('load', function () {
     toggleSidebar('left');
 // Menu
 // Roland (Source and Layer)
-    map.addSource('Roland', {
-        type: 'Symbol',
+    map.addSource('roland', {
+        type: 'vector',
         url: 'experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-806mo'
     });
     map.addLayer({
         'id': 'Roland',
-        'type': 'Symbol',
-        'source': 'Roland',
+        'type': 'symbol',
+        'source': 'roland',
         'layout': {
-        // make layer visible by default
-        'visibility': 'visible'
+          'visibility': 'visible'
         },
-        'source-layer': 'Roland'
+        'source-layer': 'roland'
         });
 // Schnoor (Source and Layer)
-    map.addSource('Schnoor', {
-        type: 'Symbol',
+    map.addSource('schnoor', {
+        type: 'vector',
         url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
     });
     map.addLayer({
         'id': 'Schnoor',
-        'type': 'Symbol',
-        'source': 'Schnoor',
+        'type': 'symbol',
+        'source': 'schnoor',
         'layout': {
-        // make layer visible by default
-        'visibility': 'visible'
+          'visibility': 'visible'
         },
-        'source-layer': 'Schnoor'
+        'source-layer': 'schnoor'
         });
 // Muehle (Source and Layer)
-    map.addSource('Muehle', {
-        type: 'Symbol',
+    map.addSource('muehle', {
+        type: 'vector',
         url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
     });
     map.addLayer({
         'id': 'Muehle',
-        'type': 'Symbol',
-        'source': 'Muehle',
+        'type': 'symbol',
+        'source': 'muehle',
         'layout': {
-        // make layer visible by default
-        'visibility': 'visible'
+          'visibility': 'visible'
         },
-        'source-layer': 'Muehle'
+        'source-layer': 'muehle'
         });
 });
 
