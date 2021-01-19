@@ -160,32 +160,32 @@ var toggleableLayerIds = ['schnoor', 'muehle', 'roland'];
  
 // set up the corresponding toggle button for each layer
 for (var i = 0; i < toggleableLayerIds.length; i++) {
-var id = toggleableLayerIds[i];
+  var id = toggleableLayerIds[i];
  
-var link = document.createElement('a');
-link.href = '#';
-link.className = 'active';
-link.textContent = id;
+  var link = document.createElement('a');
+    link.href = '#';
+    link.className = 'active';
+    link.textContent = id;
  
-link.onclick = function (e) {
-var clickedLayer = this.textContent;
-e.preventDefault();
-e.stopPropagation();
+  link.onclick = function (e) {
+    var clickedLayer = this.textContent;
+    e.preventDefault();
+    e.stopPropagation();
  
-var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+    var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
  
-// toggle layer visibility by changing the layout object's visibility property
-if (visibility === 'visible') {
-map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-this.className = '';
-} else {
-this.className = 'active';
-map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-}
-};
+    // toggle layer visibility by changing the layout object's visibility property
+    if (visibility === 'visible') {
+      map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+      this.className = '';
+    } else {
+      this.className = 'active';
+      map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+    }
+  };
  
-var layers = document.getElementById('menu');
-layers.appendChild(link);
+  var layers = document.getElementById('menu');
+    layers.appendChild(link);
 }
 
 // // Camera rotation
@@ -200,32 +200,32 @@ layers.appendChild(link);
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
 function toggleSidebar(id) {
-var elem = document.getElementById(id);
-var classes = elem.className.split(' ');
-var collapsed = classes.indexOf('collapsed') !== -1;
+  var elem = document.getElementById(id);
+  var classes = elem.className.split(' ');
+  var collapsed = classes.indexOf('collapsed') !== -1;
  
-var padding = {};
+  var padding = {};
  
-if (collapsed) {
-// Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
-classes.splice(classes.indexOf('collapsed'), 1);
+  if (collapsed) {
+  // Remove the 'collapsed' class from the class list of the element, this sets it back to the expanded state.
+    classes.splice(classes.indexOf('collapsed'), 1);
  
-padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
-map.easeTo({
-padding: padding,
-duration: 1000 // In ms, CSS transition duration property for the sidebar matches this value
-});
-} else {
-padding[id] = 0;
-// Add the 'collapsed' class to the class list of the element
-classes.push('collapsed');
+    padding[id] = 300; // In px, matches the width of the sidebars set in .sidebar CSS class
+    map.easeTo({
+      padding: padding,
+      duration: 1000 // In ms, CSS transition duration property for the sidebar matches this value
+    });
+  } else {
+    padding[id] = 0;
+    // Add the 'collapsed' class to the class list of the element
+    classes.push('collapsed');
  
-map.easeTo({
-padding: padding,
-duration: 1000
-});
-}
+    map.easeTo({
+      padding: padding,
+      duration: 1000
+    });
+  }
  
-// Update the class list on the element
-elem.className = classes.join(' ');
+  // Update the class list on the element
+  elem.className = classes.join(' ');
 }
