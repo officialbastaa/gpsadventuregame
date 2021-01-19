@@ -35,7 +35,7 @@ map.addControl(
   
 
 // Schnoor -----------------------------------------------------------------!
-map.on('click', function(e) {
+  map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
       layers: ['Schnoor'] 
     });
@@ -157,7 +157,7 @@ map.on('load', function () {
         'type': 'symbol',
         'source': 'Basic',
         'layout': {
-          'visibility': 'visible'
+          'visibility': 'none'
         },
         'source-layer': 'roland'
         });
@@ -165,7 +165,7 @@ map.on('load', function () {
     // map.addSource('schnoor', {
     //     type: 'vector',
     //     url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
-    //});
+    // });
     map.addLayer({
         'id': 'Schnoor',
         'type': 'symbol',
@@ -185,14 +185,14 @@ map.on('load', function () {
         'type': 'symbol',
         'source': 'Basic',
         'layout': {
-          'visibility': 'visible'
+          'visibility': 'none'
         },
         'source-layer': 'muehle'
         });
 });
 
 // // enumerate ids of the layers
-var toggleableLayerIds = ['Roland', 'Mühle', 'Schnoor'];
+var toggleableLayerIds = ['Roland', 'Mühle'];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];    
