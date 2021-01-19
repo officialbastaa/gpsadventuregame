@@ -151,7 +151,7 @@ map.on('load', function () {
     // map.addSource('Basic', {
     //     type: 'vector',
     //     url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
-    });
+    //});
     map.addLayer({
         'id': 'Roland',
         'type': 'symbol',
