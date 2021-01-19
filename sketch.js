@@ -24,14 +24,14 @@ map.addControl(
     })
 );
 
-// Camera rotation
-function rotateCamera(timestamp) {
-  // clamp the rotation between 0 -360 degrees
-  // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
-  map.rotateTo((timestamp / 200) % 360, { duration: 0 });
-  // Request the next frame of the animation.
-  requestAnimationFrame(rotateCamera);
-  }
+// // Camera rotation
+// function rotateCamera(timestamp) {
+//   // clamp the rotation between 0 -360 degrees
+//   // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
+//   map.rotateTo((timestamp / 200) % 360, { duration: 0 });
+//   // Request the next frame of the animation.
+//   requestAnimationFrame(rotateCamera);
+//   }
   
 
 // Schnoor -----------------------------------------------------------------!
