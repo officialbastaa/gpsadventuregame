@@ -24,6 +24,16 @@ map.addControl(
     })
 );
 
+// Camera rotation
+function rotateCamera(timestamp) {
+  // clamp the rotation between 0 -360 degrees
+  // Divide timestamp by 100 to slow rotation to ~10 degrees / sec
+  map.rotateTo((timestamp / 200) % 360, { duration: 0 });
+  // Request the next frame of the animation.
+  requestAnimationFrame(rotateCamera);
+  }
+  
+
 // Schnoor -----------------------------------------------------------------!
 map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
@@ -134,7 +144,6 @@ map.on('click', function(e) {
     
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
- 
 function toggleSidebar(id) {
 var elem = document.getElementById(id);
 var classes = elem.className.split(' ');
@@ -167,6 +176,8 @@ elem.className = classes.join(' ');
 }
  
 map.on('load', function () {
+// Start the animation.
+  rotateCamera(0);
 // Sidebar
     toggleSidebar('left');
 // Menu
@@ -215,6 +226,12 @@ map.on('load', function () {
         },
         'source-layer': 'Muehle'
         });
+  // Distance Anzeige
+  map.addSource('geojson', {
+    'type': 'geojson',
+    'data': geojson
+  });
+          
 });
 // // enumerate ids of the layers
 var toggleableLayerIds = ['Roland', 'Mühle', 'Schnoor'];
@@ -245,6 +262,14 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     var layers = document.getElementById('menu');
     layers.appendChild(link);
 }
+
+// Distance Anzeige
+var distanceContainer = document.getElementById('distance');
+var geojson = {
+  'type': 'FeatureCollection',
+  'features': []
+  };
+  
 
         // Game Start Screen
         let start = document.querySelector('#brand');
@@ -290,42 +315,3 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
         start_button.style.color = og_color; 
         
          });
-
-// Sidebar Nav Dropdown
-//* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
-
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  // Close the dropdown menu if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }  
-
-         
