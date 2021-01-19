@@ -358,11 +358,6 @@ map.on('mousemove', function (e) {
 var features = map.queryRenderedFeatures(e.point, {
 layers: ['measure-points']
 });
-// UI indicator for clicking/hovering a point on the map
-map.getCanvas().style.cursor = features.length
-? 'pointer'
-: 'crosshair';
-});
     
 
         // Game Start Screen
