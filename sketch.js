@@ -27,6 +27,7 @@ map.addControl(
 map.on('load', function () {
   // Start the animation.
   //  rotateCamera(0);
+  
   // Sidebar
   toggleSidebar('left');
   // Menu
@@ -72,7 +73,7 @@ map.on('load', function () {
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['schnoor', 'muehle'] 
+      layers: ['schnoor'] 
     });
   
     if (!features.length) {
