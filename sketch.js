@@ -27,7 +27,7 @@ map.addControl(
 map.on('load', function () {
   // Start the animation.
   //  rotateCamera(0);
-  
+
   // Sidebar
   toggleSidebar('left');
   // Menu
@@ -89,22 +89,22 @@ map.on('load', function () {
   });
   
   // Interactive marker (2)
-  // map.on('click', function(e) {
-  //   var features = map.queryRenderedFeatures(e.point, {
-  //     layers: ['Muehle'] 
-  //   });
+  map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['Muehle'] 
+    });
   
-  //   if (!features.length) {
-  //     return;
-  //   }
+    if (!features.length) {
+      return;
+    }
     
-  //   var feature = features[0];
+    var feature = features[0];
   
-  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
-  //   .setLngLat(feature.geometry.coordinates)
-  //   .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-  //   .addTo(map);
-  // });
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+  });
 
   // Center on marker (1)
   map.on('click', 'schnoor', function (e) {
