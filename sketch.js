@@ -24,6 +24,52 @@ map.addControl(
     })
 );
 
+map.on('load', function () {
+  // Start the animation.
+  //  rotateCamera(0);
+  // Sidebar
+      toggleSidebar('left');
+  // Menu
+  // Roland (Source and Layer)
+  //     map.addSource('Roland', {
+  //         type: 'vector',
+  //         url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
+  //     });
+  //     map.addLayer({
+  //         'id': 'Roland',
+  //         'type': 'symbol',
+  //         'source': 'composite',
+  //         'layout': {
+  //           'visibility': 'none'
+  //         },
+  //         'source-layer': 'roland'
+  //         });
+
+  // Muehle (Source and Layer)
+  map.addLayer({
+    'id': 'Muehle',
+    'type': 'symbol',
+    'source': {
+      type: 'vector',
+      url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'  
+    },
+    'layout': { 'visibility': 'visible' },
+    'source-layer': 'Muehle'
+    });
+  
+   // Schnoor (Source and Layer)
+      map.addLayer({
+          'id': 'Schnoor',
+          'type': 'symbol',
+          'source': {
+            type: 'vector',
+            url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'  
+          },
+          'layout': { 'visibility': 'visible' },
+          'source-layer': 'Schnoor'
+        });
+  });
+  
 // // Camera rotation
 // function rotateCamera(timestamp) {
 //   // clamp the rotation between 0 -360 degrees
@@ -72,7 +118,8 @@ map.addControl(
   // Interactive marker
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Muehle', 'Schnoor'] 
+      layers: ['Muehle'],
+      layers: ['Schnoor'] 
     });
 
     if (!features.length) {
@@ -162,53 +209,6 @@ duration: 1000
 elem.className = classes.join(' ');
 }
  
-map.on('load', function () {
-// Start the animation.
-//  rotateCamera(0);
-// Sidebar
-    toggleSidebar('left');
-// Menu
-// Roland (Source and Layer)
-//     map.addSource('Roland', {
-//         type: 'vector',
-//         url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
-//     });
-//     map.addLayer({
-//         'id': 'Roland',
-//         'type': 'symbol',
-//         'source': 'composite',
-//         'layout': {
-//           'visibility': 'none'
-//         },
-//         'source-layer': 'roland'
-//         });
-// Muehle (Source and Layer)
-map.addSource('Muehle', {
-  type: 'vector',
-  url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
-});
-map.addLayer({
-  'id': 'Muehle',
-  'type': 'symbol',
-  'source': 'Muehle',
-  'layout': { 'visibility': 'visible' },
-  'source-layer': 'muehle'
-  });
-
- // Schnoor (Source and Layer)
-    map.addSource('Schnoor', {
-        type: 'vector',
-        url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
-    });
-    map.addLayer({
-        'id': 'Schnoor',
-        'type': 'symbol',
-        'source': 'Schnoor',
-        'layout': { 'visibility': 'visible' },
-        'source-layer': 'schnoor'
-      });
-});
-
 // // enumerate ids of the layers
 var toggleableLayerIds = ['Mühle', 'Schnoor'];
 
