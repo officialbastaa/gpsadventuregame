@@ -107,7 +107,7 @@ map.on('load', function () {
 
 //Menu --------------------------------!>
 // enumerate ids of the layers
-var toggleableLayerIds = ['Schnoor'];
+var toggleableLayerIds = ['schnoor'];
  
 // set up the corresponding toggle button for each layer
 for (var i = 0; i < toggleableLayerIds.length; i++) {
