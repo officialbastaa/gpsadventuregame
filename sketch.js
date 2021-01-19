@@ -47,7 +47,7 @@ map.on('load', function () {
 
   // Schnoor (Source and Layer)
   map.addLayer({
-    'id': 'Schnoor',
+    'id': 'schnoor',
     'type': 'symbol',
     'source': {
       type: 'vector',
@@ -57,9 +57,9 @@ map.on('load', function () {
     'source-layer': 'Schnoor'
   });
 
-    // Muehle (Source and Layer)
+  // Muehle (Source and Layer)
   map.addLayer({
-    'id': 'Muehle',
+    'id': 'muehle',
     'type': 'symbol',
     'source': {
       type: 'vector',
@@ -72,7 +72,7 @@ map.on('load', function () {
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Schnoor'] 
+      layers: ['schnoor', 'muehle'] 
     });
   
     if (!features.length) {
@@ -88,32 +88,32 @@ map.on('load', function () {
   });
   
   // Interactive marker (2)
-  map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Muehle'] 
-    });
+  // map.on('click', function(e) {
+  //   var features = map.queryRenderedFeatures(e.point, {
+  //     layers: ['Muehle'] 
+  //   });
   
-    if (!features.length) {
-      return;
-    }
+  //   if (!features.length) {
+  //     return;
+  //   }
     
-    var feature = features[0];
+  //   var feature = features[0];
   
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
-  });
+  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
+  //   .setLngLat(feature.geometry.coordinates)
+  //   .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+  //   .addTo(map);
+  // });
 
   // Center on marker (1)
-  map.on('click', 'Schnoor', function (e) {
+  map.on('click', 'schnoor', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (2)
-  map.on('click', 'Muehle', function (e) {
+  map.on('click', 'muehle', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
@@ -132,7 +132,7 @@ map.on('load', function () {
 
 //Menu --------------------------------!>
 // enumerate ids of the layers
-var toggleableLayerIds = ['Schnoor', 'Muehle'];
+var toggleableLayerIds = ['schnoor', 'muehle'];
  
 // set up the corresponding toggle button for each layer
 for (var i = 0; i < toggleableLayerIds.length; i++) {
