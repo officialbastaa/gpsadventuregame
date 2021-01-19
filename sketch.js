@@ -91,7 +91,7 @@ map.on('load', function () {
   // Interactive marker (2)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['Muehle'] 
+      layers: ['muehle'] 
     });
   
     if (!features.length) {
