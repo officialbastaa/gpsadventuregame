@@ -148,42 +148,42 @@ map.on('load', function () {
     toggleSidebar('left');
 // Menu
 // Roland (Source and Layer)
-    map.addSource('roland', {
+    map.addSource('Basic', {
         type: 'vector',
-        url: 'experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-806mo'
+        url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
     });
     map.addLayer({
         'id': 'Roland',
         'type': 'symbol',
-        'source': 'roland',
+        'source': 'Basic',
         'layout': {
           'visibility': 'visible'
         },
         'source-layer': 'roland'
         });
 // Schnoor (Source and Layer)
-    map.addSource('schnoor', {
-        type: 'vector',
-        url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
-    });
+    // map.addSource('schnoor', {
+    //     type: 'vector',
+    //     url: 'experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'
+    //});
     map.addLayer({
         'id': 'Schnoor',
         'type': 'symbol',
-        'source': 'schnoor',
+        'source': 'Basic',
         'layout': {
           'visibility': 'visible'
         },
         'source-layer': 'schnoor'
         });
 // Muehle (Source and Layer)
-    map.addSource('muehle', {
-        type: 'vector',
-        url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
-    });
+    // map.addSource('muehle', {
+    //     type: 'vector',
+    //     url: 'experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'
+    //});
     map.addLayer({
         'id': 'Muehle',
         'type': 'symbol',
-        'source': 'muehle',
+        'source': 'Basic',
         'layout': {
           'visibility': 'visible'
         },
