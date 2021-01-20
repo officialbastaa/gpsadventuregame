@@ -78,9 +78,9 @@ body {
 .sidebar-content-butten {
     position: absolute;
     width: 95%;
-    height: 25%;
+    height: 40%;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     color: #114e74;
 }
 
@@ -89,7 +89,7 @@ body {
     width: 95%;
     height: 95%;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 32px;
+    font-size: 20px;
     color: #114e74;
 }
          
