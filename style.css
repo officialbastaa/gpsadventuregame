@@ -134,7 +134,7 @@ transform: translateX(-295px);
     background: #fff;
     position: absolute;
     z-index: 1;
-    bottom: 25px;
+    top: 25px;
     right: 50px;
     border-radius: 3px;
     width: 120px;
