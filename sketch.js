@@ -229,3 +229,53 @@ function toggleSidebar(id) {
   // Update the class list on the element
   elem.className = classes.join(' ');
 }
+
+// Missions
+var modal = document.getElementById("myMissions");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Timer
+function startTimer(duration, display) {
+  var timer = duration, minutes, seconds;
+  setInterval(function () {
+      minutes = parseInt(timer / 60, 10)
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.text(minutes + ":" + seconds);
+
+      if (--timer < 0) {
+          timer = duration;
+      }
+  }, 1000);
+}
+
+jQuery(function ($) {
+  var fiveMinutes = 60 * 5,
+      display = $('#time');
+  startTimer(fiveMinutes, display);
+});

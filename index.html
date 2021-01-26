@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    <nav id="menu"></nav> 
+    <nav>You have <span id="time">05:00</span>minutes left!</nav>
+   <!-- <nav id="menu"></nav> -->
     <div id="map">
     <!-- Sidebar -->
         <div id="left" class="sidebar flex-center left collapsed">
@@ -20,7 +21,7 @@
                 <!-- <div class="flex-down">    -->
                     <div class="rounded-rect-content flex-center">
                         <ul>
-                            <li><a href="mission.html">Missions</a><br></li>
+                            <li><a id="myBtn">Missions</a><br></li>
                             <li><a href="items.html">Items</a><br></li>
                             <li><a href="help.html">Help</a><br></li>
                         </ul>
@@ -34,6 +35,14 @@
         <!--    </div> -->  
             <div class="sidebar-toggle rounded-rect left" onclick="toggleSidebar('left')">
                 &rarr;
+            </div>
+        </div>
+        <!-- Missions -->
+        <div id="myMissions" class="missions">
+            <!-- Missions content -->
+            <div class="missions-content">
+                <span class="close">&times;</span>
+                <p>Some text in the Modal..</p>
             </div>
         </div>
     </div>
