@@ -9,10 +9,7 @@ center: center,
 });
 
 // Add Fullscreen Button
-map.addControl(new mapboxgl.FullscreenControl());
-
-// Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
+//map.addControl(new mapboxgl.FullscreenControl());
 
 // Add geolocate control to the map.
 map.addControl(
@@ -25,25 +22,20 @@ map.addControl(
 );
 
 // Timer
-var minutesLabel = document.getElementById("minutes");
-var secondsLabel = document.getElementById("seconds");
-var totalSeconds = 0;
-  setInterval(setTime, 1000);
-
-function setTime() {
-  ++totalSeconds;
-  secondsLabel.innerHTML = pad(totalSeconds%60);
-  minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
-}
+var sec = 0;
 
 function pad(val) {
-  var valString = val + "";
-  if(valString.length < 2) {
-    return "0" + valString;
-  } else {
-      return valString;
-  }
+    return val > 9 ? val : "0" + val;
 }
+var timer = setInterval(function () {
+    document.getElementById("seconds").innerHTML = pad(++sec % 60);
+    document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+}, 1000);
+
+setTimeout(function () {
+    clearInterval(timer);
+}, 1110000);
+
 
 map.on('load', function () {
   // Start the animation.
@@ -87,6 +79,81 @@ map.on('load', function () {
     'layout': { 'visibility': 'visible' },
     'source-layer': 'Muehle'
   });
+
+  // Source für Ziele (Destination)
+  // map.addSource('destination', {
+  //   'type': 'geojson', 
+  //   'data': {
+  //     'type': 'FeatureCollection',
+  //     'features': [
+  //       {
+  //         'type': 'Feature',
+  //         'properties': {
+  //           'description':
+  //             '<strong>Ziel (Schnoor)</strong><p>Herzlichen Glückwunsch, du hast das gesuchte Ziel erreicht!</p>',
+  //           'icon': 'hk-strategic-route-2'
+  //         },
+  //         'geometry': {
+  //           'type': 'Symbol',
+  //           'coordinates': [8.809213, 53.073001]
+  //         }
+  //       },
+  //       {
+  //         'type': 'Feature',
+  //         'properties': {
+  //           'description':
+  //             '<strong>Ziel (Bremer Roland)</strong><p>Herzlichen Glückwunsch, du hast das gesuchte Ziel erreicht!</p>',
+  //             'icon': 'hk-strategic-route-2'
+  //         },
+  //         'geometry': {
+  //           'type': 'Symbol',
+  //           'coordinates': [8.8073, 53.07587]
+  //         }
+  //       },
+  //       {
+  //         'type': 'Feature',
+  //         'properties': {
+  //           'description':
+  //             '<strong>Ziel (Herdentorsmühle)</strong><p>Herzlichen Glückwunsch, du hast das gesuchte Ziel erreicht!</p>',
+  //             'icon': 'hk-strategic-route-2'
+  //         },
+  //         'geometry': {
+  //           'type': 'Symbol',
+  //           'coordinates': [8.80689, 53.08016]
+  //         }
+  //       }
+  //     ]
+  //   }
+  // });
+
+  // Ziele
+  // map.addLayer({
+  //   'id': 'destination',
+  //   'type': 'symbol',
+  //   'source': 'destination',
+  //   // 'layout': {
+  //   //   'layout': { 'visibility': 'visible' },
+  //   // }
+  // });
+
+  // map.on('click', 'destination', function (e) {
+  //   var coordinates = e.features[0].geometry.coordinates.slice();
+  //   var description = e.features[0].properties.description;
+
+  //   clearInterval(timer);
+    
+  //   // Ensure that if the map is zoomed out such that multiple
+  //   // copies of the feature are visible, the popup appears
+  //   // over the copy being pointed to.
+  //   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+  //     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+  //   }
+   
+  //   new mapboxgl.Popup()
+  //     .setLngLat(coordinates)
+  //     .setHTML(description)
+  //     .addTo(map);
+  // });
 
   // Interactive marker (1)
   map.on('click', function(e) {
