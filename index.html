@@ -12,40 +12,67 @@
 </head>
 
 <body>
-    <nav>You have <span id="time">05:00</span>minutes left!</nav>
-   <!-- <nav id="menu"></nav> -->
+    <nav id="menu"></nav>
     <div id="map">
-    <!-- Sidebar -->
+        <!-- Sidebar -->
         <div id="left" class="sidebar flex-center left collapsed">
             <div class="sidebar-content rounded-rect flex-center">
                 <!-- <div class="flex-down">    -->
                     <div class="rounded-rect-content flex-center">
                         <ul>
-                            <li><a id="myBtn">Missions</a><br></li>
-                            <li><a href="items.html">Items</a><br></li>
-                            <li><a href="help.html">Help</a><br></li>
+                            <!-- <li><a>Time: <span id="time">15:00</span></a><br></li> -->
+                            <li><a id="myMissionsBtn">Missions</a><br></li>
+                            <li><a id="myItemsBtn">Items</a><br></li>
+                            <li><a id="myHelpBtn">Help</a><br></li>
                         </ul>
                     </div>
-                <!--<div class="rounded-rect-content sidebar-content-butten flex-center" onclick="">
+                    <!--<div class="rounded-rect-content sidebar-content-butten flex-center" onclick="">
                         Items
                     </div>
                     <div class="rounded-rect-content sidebar-content-butten flex-center" onclick="">
                         Help me!
                     </div>  -->
-        <!--    </div> -->  
-            <div class="sidebar-toggle rounded-rect left" onclick="toggleSidebar('left')">
-                &rarr;
+                    <div class="sidebar-toggle rounded-rect left" onclick="toggleSidebar('left')">
+                        &rarr;
+                    </div>
+                </div>
             </div>
         </div>
+
         <!-- Missions -->
         <div id="myMissions" class="missions">
             <!-- Missions content -->
             <div class="missions-content">
-                <span class="close">&times;</span>
-                <p>Some text in the Modal..</p>
+                <span class="closeMissions">&times;</span>
+                <p>Some text in the Missions..</p>
+            </div>
+        </div>
+
+        <!-- Items -->
+        <div id="myItems" class="items">
+            <!-- Items content -->
+            <div class="items-content">
+                <span class="closeItems">&times;</span>
+                <p>Some text in the Items..</p>
+            </div>
+        </div>
+
+        <!-- Help -->
+        <div id="myHelp" class="help">
+            <!-- Help content -->
+            <div class="help-content">
+                <span class="closeHelp">&times;</span>
+                <p>Some text in the Help..</p>
             </div>
         </div>
     </div>
+    <!-- Timer -->
+    <div id="timer-container">
+        <div class="timer">
+            <label id="minutes">00</label>:<label id="seconds">00</label>
+        </div>
+    </div>    
+    
 </body>
 
 <!-- Mapbox JS -->

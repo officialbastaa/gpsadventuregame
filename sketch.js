@@ -24,6 +24,27 @@ map.addControl(
     })
 );
 
+// Timer
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+  setInterval(setTime, 1000);
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds%60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if(valString.length < 2) {
+    return "0" + valString;
+  } else {
+      return valString;
+  }
+}
+
 map.on('load', function () {
   // Start the animation.
   //  rotateCamera(0);
@@ -199,6 +220,7 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
       
 //sidebar
 //new mapboxgl.Marker().setLngLat(center).addTo(map);
+
 function toggleSidebar(id) {
   var elem = document.getElementById(id);
   var classes = elem.className.split(' ');
@@ -230,52 +252,60 @@ function toggleSidebar(id) {
   elem.className = classes.join(' ');
 }
 
+
 // Missions
-var modal = document.getElementById("myMissions");
+var missions = document.getElementById("myMissions");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+// Get the button that opens the Missions
+var missions_btn = document.getElementById("myMissionsBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// Get the <span> element that closes the Missions
+var span = document.getElementsByClassName("closeMissions")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
+// When the user clicks the button, open the Missions
+missions_btn.onclick = function() {
+  missions.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the Missions
 span.onclick = function() {
-  modal.style.display = "none";
+  missions.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+// Items
+var items = document.getElementById("myItems");
+
+// Get the button that opens the Items
+var items_btn = document.getElementById("myItemsBtn");
+
+// Get the <span> element that closes the Items
+var span = document.getElementsByClassName("closeItems")[0];
+
+// When the user clicks the button, open the Items
+items_btn.onclick = function() {
+  items.style.display = "block";
 }
 
-// Timer
-function startTimer(duration, display) {
-  var timer = duration, minutes, seconds;
-  setInterval(function () {
-      minutes = parseInt(timer / 60, 10)
-      seconds = parseInt(timer % 60, 10);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.text(minutes + ":" + seconds);
-
-      if (--timer < 0) {
-          timer = duration;
-      }
-  }, 1000);
+// When the user clicks on <span> (x), close the Items
+span.onclick = function() {
+  items.style.display = "none";
 }
 
-jQuery(function ($) {
-  var fiveMinutes = 60 * 5,
-      display = $('#time');
-  startTimer(fiveMinutes, display);
-});
+// Help
+var help = document.getElementById("myHelp");
+
+// Get the button that opens the Help
+var help_btn = document.getElementById("myHelpBtn");
+
+// Get the <span> element that closes the Help
+var span = document.getElementsByClassName("closeHelp")[0];
+
+// When the user clicks the button, open the Help
+help_btn.onclick = function() {
+  help.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the Help
+span.onclick = function() {
+  help.style.display = "none";
+}

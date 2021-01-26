@@ -8,54 +8,16 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
+    z-index: 1;
 }
-    
-/* Start.html - GameScreen */
-#startbody{
-    height:100%;
-    background: url(https://78.media.tumblr.com/ab5d1b5e315a2eca8f7ceecbac7fd622/tumblr_oz2jfje5Jn1u6t6uao1_1280.jpg) center center no-repeat;
-    background-size:cover;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:sans-serif;
-    margin:0;
-    overflow:hidden
-  }  
-#brand{  
-    text-align:center;
-    cursor:pointer;
-  }
-  #brand img{
-    display:block;
-    width:80vw;
-    max-width:700px;
-    height:auto;
-    transition:0.2s
-  }
-  #brand a{
-    display:block;
-    font-family: 'Futura';
-    color:#333;
-    font-weight:800;
-    text-decoration:none;
-    background:rgba(0,0,40,0);
-    padding:5px 15px;
-    transition:0.4s
-  }
-  #brand:hover a {  
-    color:rgba(200,80,50,1);
-    text-shadow:2px 5px 0 rgba(0,0,0,0.6)
-  }
 
 /* Sidebar */
 .rounded-rect {
-    background: #1da1f2;
+    background: #f2e041;
     border-radius: 10px;
     box-shadow: 0 0 50px -25px black;
 }
 .rounded-rect-content {
-    background: white;
     border-radius: 10px;
 }
 
@@ -80,7 +42,8 @@ body {
     height: 40%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    color: #114e74;
+    padding: 20px;
+    color: #232524;
 }
 
 .sidebar-content {
@@ -89,7 +52,8 @@ body {
     height: 95%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 32px;
-    color: #114e74;
+    line-height: 2;
+    color: #232524;
 }
          
 .sidebar-toggle {
@@ -107,7 +71,7 @@ right: -1.5em;
 }
 
 .sidebar-toggle:hover {
-color: white;
+color: #45ffff;
 cursor: pointer;
 }
  
@@ -144,39 +108,137 @@ transform: translateX(-295px);
 
 /* Missions Content */
 .missions-content {
-  background-color: #fefefe;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2e041;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 80%;
+  border-radius: 10px;
+  z-index: 3;
 }
 
-/* The Close Button */
-.close {
+/* The Close Missions Button */
+.closeMissions {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.closeMissions:hover,
+.closeMissions:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-/* timer 
-#timer {
-  
+/* Items */
+.items {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-*/
+
+/* Items Content */
+.items-content {
+  background-color: #f2e041;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+/* The Close Items Button */
+.closeItems {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeItems:hover,
+.closeItems:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Help */
+.help {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Help Content */
+.help-content {
+  background-color: #f2e041;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+/* The Close Help Button */
+.closeHelp {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeHelp:hover,
+.closeHelp:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Timer */
+#timer-container {
+  position: relative;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  top: 25px;
+  height: 50;
+  width: 10%;
+  background: #f5e042;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 5px;
+}
+.timer {
+  padding: 10px;
+  font-size: large;
+  color: #222f3b;
+  font-weight: bold;
+} 
 
 /* menu */
 #menu {
     background: #fff;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     top: 25px;
     right: 50px;
     border-radius: 3px;
@@ -207,7 +269,7 @@ transform: translateX(-295px);
     }
      
     #menu a.active {
-    background-color: #5AC8FA;
+    background-color: #222f3b;
     color: #ffffff;
     }
      
