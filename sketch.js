@@ -91,6 +91,19 @@ map.on('load', function () {
     'layout': { 'visibility': 'visible' },
     'source-layer': 'Destination'
   });
+
+  // Test (Source and Layer)
+  map.addLayer({
+    'id': 'test',
+    'type': 'symbol',
+    'source': {
+      type: 'vector',
+      url: 'mapbox://experimentalmobileplay.ckkfgab5r03rw21qq501s7yqm-9au3z'  
+    },
+    'layout': { 'visibility': 'visible' },
+    'source-layer': 'Test'
+  });
+
   
   // Interactive marker (1)
   map.on('click', function(e) {
@@ -170,6 +183,30 @@ map.on('load', function () {
     .addTo(map);
   });
 
+  // Interactive marker (Test)
+  map.on('click', function(e) {
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['test'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+    
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+  });
+
+  // Timer stop when Ziel erreicht
+  map.on('click', 'destination', function(e) {
+    clearInterval(timer);
+  });
+
+
   // Center on marker (1)
   map.on('click', 'schnoor', function (e) {
     map.flyTo({
@@ -198,7 +235,12 @@ map.on('load', function () {
     });
   });  
 
-
+  // Center on Test (5)
+  map.on('click', 'test', function (e) {
+    map.flyTo({
+      center: e.features[0].geometry.coordinates
+    });
+  });  
 
   // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
   map.on('mouseenter', 'symbols', function () {
