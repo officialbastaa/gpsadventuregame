@@ -9,7 +9,7 @@ center: center,
 });
 
 // Add Fullscreen Button
-//map.addControl(new mapboxgl.FullscreenControl());
+map.addControl(new mapboxgl.FullscreenControl());
 
 // Add geolocate control to the map.
 map.addControl(
@@ -80,81 +80,18 @@ map.on('load', function () {
     'source-layer': 'Muehle'
   });
 
-  // Source für Ziele (Destination)
-  // map.addSource('destination', {
-  //   'type': 'geojson', 
-  //   'data': {
-  //     'type': 'FeatureCollection',
-  //     'features': [
-  //       {
-  //         'type': 'Feature',
-  //         'properties': {
-  //           'description':
-  //             '<strong>Ziel (Schnoor)</strong><p>Herzlichen Glückwunsch, du hast das gesuchte Ziel erreicht!</p>',
-  //           'icon': 'hk-strategic-route-2'
-  //         },
-  //         'geometry': {
-  //           'type': 'Symbol',
-  //           'coordinates': [8.809213, 53.073001]
-  //         }
-  //       },
-  //       {
-  //         'type': 'Feature',
-  //         'properties': {
-  //           'description':
-  //             '<strong>Ziel (Bremer Roland)</strong><p>Herzlichen Glückwunsch, du hast das gesuchte Ziel erreicht!</p>',
-  //             'icon': 'hk-strategic-route-2'
-  //         },
-  //         'geometry': {
-  //           'type': 'Symbol',
-  //           'coordinates': [8.8073, 53.07587]
-  //         }
-  //       },
-  //       {
-  //         'type': 'Feature',
-  //         'properties': {
-  //           'description':
-  //             '<strong>Ziel (Herdentorsmühle)</strong><p>Herzlichen Glückwunsch, du hast das gesuchte Ziel erreicht!</p>',
-  //             'icon': 'hk-strategic-route-2'
-  //         },
-  //         'geometry': {
-  //           'type': 'Symbol',
-  //           'coordinates': [8.80689, 53.08016]
-  //         }
-  //       }
-  //     ]
-  //   }
-  // });
-
-  // Ziele
-  // map.addLayer({
-  //   'id': 'destination',
-  //   'type': 'symbol',
-  //   'source': 'destination',
-  //   // 'layout': {
-  //   //   'layout': { 'visibility': 'visible' },
-  //   // }
-  // });
-
-  // map.on('click', 'destination', function (e) {
-  //   var coordinates = e.features[0].geometry.coordinates.slice();
-  //   var description = e.features[0].properties.description;
-
-  //   clearInterval(timer);
-    
-  //   // Ensure that if the map is zoomed out such that multiple
-  //   // copies of the feature are visible, the popup appears
-  //   // over the copy being pointed to.
-  //   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-  //     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-  //   }
-   
-  //   new mapboxgl.Popup()
-  //     .setLngLat(coordinates)
-  //     .setHTML(description)
-  //     .addTo(map);
-  // });
-
+  // Ziele (Source and Layer)
+  map.addLayer({
+    'id': 'destination',
+    'type': 'symbol',
+    'source': {
+      type: 'vector',
+      url: 'mapbox://experimentalmobileplay.ckkff5sp815a027l5edv06deq-84id3'  
+    },
+    'layout': { 'visibility': 'visible' },
+    'source-layer': 'Destination'
+  });
+  
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
@@ -209,6 +146,30 @@ map.on('load', function () {
     .addTo(map);
   });
 
+  map.on('click', 'destination', function(e) {
+    clearInterval(timer);
+  });
+
+
+  // Interactive marker (Ziele)
+  map.on('click', function(e) {
+
+    var features = map.queryRenderedFeatures(e.point, {
+      layers: ['destination'] 
+    });
+  
+    if (!features.length) {
+      return;
+    }
+    
+    var feature = features[0];
+  
+    var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+    .addTo(map);
+  });
+
   // Center on marker (1)
   map.on('click', 'schnoor', function (e) {
     map.flyTo({
@@ -229,6 +190,14 @@ map.on('load', function () {
       center: e.features[0].geometry.coordinates
     });
   });  
+
+  // Center on Ziele (4)
+  map.on('click', 'destination', function (e) {
+    map.flyTo({
+      center: e.features[0].geometry.coordinates
+    });
+  });  
+
 
 
   // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
