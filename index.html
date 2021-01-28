@@ -19,7 +19,7 @@
             <div class="sidebar-content rounded-rect flex-center">
                 <!-- <div class="flex-down">    -->
                     <img src="assets/sidebar_fin.svg" alt="sidebar_background" class="responsiveImage">
-                    <div class="rounded-rect-content flex-center">
+                    <div class="flex-center">
                         <ul class="sidebarText" style="padding-bottom: 160px">
                             <p class="userID"><font style="font-weight: bold">USER_ID:</font> 040147</p>
                             <p>HELLO <font color=01f0ff>040147</font>,<br>
@@ -30,7 +30,7 @@
                                     <p style="padding-bottom: 15px">WE WISH YOU THE BEST LUCK!</p>
                             <ul id="sidebarTextMenu">
                                 <a id="myMissionsBtn">MISSION</a><br>
-                                <a id="myItemsBtn">ITEMS</a><br>
+                                <a id="myItemsBtn">STORY</a><br>
                                 <a id="myHelpBtn">HELP</a><br>
                             </ul>
                         </ul>
@@ -46,18 +46,43 @@
         <div id="myMissions" class="missions">
             <!-- Missions content -->
             <div class="missions-content">
-                <span class="closeMissions">&times;</span>
-                <p>Wähle eine Mission aus!<br> Dein Ziel: Einen Ort in Bremen wiederherzustellen!<br> Viel Erfolg!</p>
+                <div class="sidebar-missions flex-center">
+                    <div class=" sidebar-content flex-center rounded-rect">
+                        <img src="assets/sidebar_fin.svg" alt="sidebar_background" class="responsiveImage">
+                        <div class="flex-center">
+                            <ul class="sidebarTextMissions" style="padding-bottom: 160px">
+                                <p class="userID"><font style="font-weight: bold">USER_ID:</font> 040147</p>
+                                <p style="padding-bottom: 30px">CHOOSE A MISSION<br>
+                                GOOD LUCK MY FRIEND!</p>
+                                    <!-- <p style="padding-bottom: 15px">WE WISH YOU THE BEST LUCK!</p> -->
+                                <ul id="menu" class="sidebarTextMenuMissions"></ul>
+                            </ul>
+                        </div>
+                        <div class="sidebar-toggle rounded-rect left"> 
+                            <span class="closeMissions">&times;</span>
+                        </div>
+                    </div>
+                    <!-- <p>Wähle eine Mission aus!<br> Dein Ziel: Einen Ort in Bremen wiederherzustellen!<br> Viel Erfolg!</p> -->
+                </div>
                 <div  id="menu" class="menu"></div>
             </div>
         </div>
 
-        <!-- Items -->
-        <div id="myItems" class="items">
-            <!-- Items content -->
-            <div class="items-content">
-                <span class="closeItems">&times;</span>
-                <p>Some text in the Items..</p>
+        <!-- Story -->
+        <div id="myStory" class="story">
+            <!-- Story content -->
+            <div class="story-content">
+                <div class="sidebar-story flex-center">
+                    <div class=" sidebar-content flex-center rounded-rect">
+                        <img src="assets/sidebar_fin.svg" alt="sidebar_background" class="responsiveImage">
+                        <div class="flex-center">
+                        </div>
+                        <div class="sidebar-toggle rounded-rect left"> 
+                            <span class="closeStory">&times;</span>
+                        </div>
+                    </div>
+                    <!-- <p>Wähle eine Mission aus!<br> Dein Ziel: Einen Ort in Bremen wiederherzustellen!<br> Viel Erfolg!</p> -->
+                </div>
             </div>
         </div>
 

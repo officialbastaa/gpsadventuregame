@@ -8,9 +8,6 @@ zoom: 13.5, // starting zoom
 center: center,
 });
 
-// Add Fullscreen Button
-map.addControl(new mapboxgl.FullscreenControl());
-
 // Add geolocate control to the map.
 map.addControl(
     new mapboxgl.GeolocateControl({
@@ -77,7 +74,7 @@ map.on('load', function () {
       url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'  
     },
     'layout': { 'visibility': 'visible' },
-    'source-layer': 'Muehle'
+    'source-layer': 'Muhele'
   });
 
   // Ziele (Source and Layer)
@@ -162,7 +159,6 @@ map.on('load', function () {
   map.on('click', 'destination', function(e) {
     clearInterval(timer);
   });
-
 
   // Interactive marker (Ziele)
   map.on('click', function(e) {
@@ -254,7 +250,7 @@ map.on('load', function () {
 });
 
 //Menu --------------------------------!>
-// enumerate ids of the layers
+// enumerate ids of the layers (schnoor, muehle, roland)
 var toggleableLayerIds = ['schnoor', 'muehle', 'roland'];
  
 // set up the corresponding toggle button for each layer
@@ -350,23 +346,23 @@ span.onclick = function() {
   missions.style.display = "none";
 }
 
-// Items
-var items = document.getElementById("myItems");
+// Story
+var story = document.getElementById("myStory");
 
-// Get the button that opens the Items
-var items_btn = document.getElementById("myItemsBtn");
+// Get the button that opens the Story
+var story_btn = document.getElementById("myStoryBtn");
 
-// Get the <span> element that closes the Items
-var span = document.getElementsByClassName("closeItems")[0];
+// Get the <span> element that closes the Story
+var span = document.getElementsByClassName("closeStory")[0];
 
-// When the user clicks the button, open the Items
-items_btn.onclick = function() {
-  items.style.display = "block";
+// When the user clicks the button, open the Story
+Story_btn.onclick = function() {
+  Story.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the Items
+// When the user clicks on <span> (x), close the Story
 span.onclick = function() {
-  items.style.display = "none";
+  Story.style.display = "none";
 }
 
 // Help
