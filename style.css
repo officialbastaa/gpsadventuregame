@@ -1,7 +1,7 @@
 body {
     margin:0;
     padding:0;
-    /* font-family: MyWebFont, Fallback, sans-serif; */
+    font-family: MyWebFont, Fallback, sans-serif;
 }
 
 @font-face { 
@@ -113,10 +113,11 @@ transform: translateX(-295px);
 .sidebarText {
   font-family: 'MyWebFont', sans-serif;
   font-weight: thin;
-  font-size: 15px;
+  font-size: 18px;
   color: #232524;
   padding: 10px;
   text-align: left;
+  line-height: normal;
 }
 .sidebarTextMenu {
   font-weight: bold;
