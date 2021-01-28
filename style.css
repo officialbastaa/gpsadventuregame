@@ -7,14 +7,14 @@ body {
 @font-face { 
   font-family: "MyWebFont"; 
   font-weight: thin;
-  src: url('assets/Font/BlenderPro-Thin.woff'),
-       url('assets/Font/BlenderPro-Thin.woff2');
+  src: url('assets/font/BlenderPro-Thin.woff'),
+       url('assets/font/BlenderPro-Thin.woff2');
 }
 @font-face { 
   font-family: "MyWebFont"; 
   font-weight: bold;
-  src: url('assets/Font/BlenderPro-Bold.woff'),
-       url('assets/Font/BlenderPro-Bold.woff2');
+  src: url('assets/font/BlenderPro-Bold.woff'),
+       url('assets/font/BlenderPro-Bold.woff2');
 }
 
 #map {
