@@ -109,6 +109,13 @@ transform: translateX(-295px);
   width: 100%;
   height: auto;
 }
+.responsiveImageMenu {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .sidebarText {
   font-family: 'MyWebFont', sans-serif;
@@ -119,17 +126,34 @@ transform: translateX(-295px);
   text-align: left;
   line-height: normal;
 }
-.sidebarTextMenu {
-  font-weight: bold;
-  padding: 10px;
-  text-align: center;
-}
-
 .userID {
   color: #01f0ff;
   padding-bottom: 2px;
   text-align: left;
 }
+
+#sidebarTextMenu {
+  position: absolute;
+  width: 120px;
+  font-family: 'MyWebFont', Fallback, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 48px;
+  line-height: 10px;
+}
+#sidebarTextMenu a {
+  background: url(assets/buttonBackground.svg);
+  background-size: contain;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
 
 /* Missions */
 .missions {
@@ -321,4 +345,4 @@ transform: translateX(-295px);
     #menu a.active:hover {
     background: #3074a4;
     }
-    
+        
