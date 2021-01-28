@@ -51,6 +51,7 @@ body {
 }
 
 .sidebar-content-butten {
+    z-index: 2;
     position: absolute;
     width: 95%;
     height: 40%;
@@ -61,9 +62,10 @@ body {
 }
 
 .sidebar-content {
+    z-index: 2;
     position: absolute;
     width: 95%;
-    height: 95%;
+    height: auto;
     font-family: MyWebFont, Fallback, sans-serif;
     font-size: 32px;
     line-height: 2;
@@ -91,7 +93,7 @@ cursor: pointer;
  
 .sidebar {
 transition: transform 1s;
-z-index: 1;
+z-index: 2;
 width: 300px;
 height: 100%;
 }
@@ -105,10 +107,13 @@ transform: translateX(-295px);
     .sidebar a {font-size: 18px;}
   }
 
+/* Responsive Image in HTML */
 .responsiveImage {
   width: 100%;
   height: auto;
 }
+
+/* Responsive Image in Sidebar */
 .responsiveImageMenu {
   width: 50%;
   height: auto;
@@ -117,6 +122,7 @@ transform: translateX(-295px);
   margin-right: auto;
 }
 
+/* Text in Sidebar */
 .sidebarText {
   font-family: 'MyWebFont', sans-serif;
   font-weight: thin;
@@ -126,12 +132,15 @@ transform: translateX(-295px);
   text-align: left;
   line-height: normal;
 }
+
+/* User ID in Sidebar */
 .userID {
   color: #01f0ff;
   padding-bottom: 2px;
   text-align: left;
 }
 
+/* Menu in Sidebar */
 #sidebarTextMenu {
   position: absolute;
   width: 120px;
@@ -141,6 +150,7 @@ transform: translateX(-295px);
   padding-left: 48px;
   line-height: 10px;
 }
+/* Menu in Sidebar Inhalt */
 #sidebarTextMenu a {
   background: url(assets/buttonBackground.svg);
   background-size: contain;
@@ -155,12 +165,11 @@ transform: translateX(-295px);
   text-decoration: none;
 }
 
-
 /* Missions */
 .missions {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -174,13 +183,31 @@ transform: translateX(-295px);
 /* Missions Content */
 .missions-content {
   background-color: #f2e041;
-  font-family: MyWebFont, Fallback, sans-serif;
+  font-family: 'MyWebFont', Fallback, sans-serif;
   color: #222f3b;
   margin: auto;
   padding: 20px;
   width: 80%;
   border-radius: 10px;
   z-index: 3;
+  text-align: center;
+  line-height: normal;
+}
+
+/* Menu in Mission Content */
+.missions-content a {
+  background: url(assets/buttonBackground.svg);
+  background-size: contain;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* The Close Missions Button */
@@ -191,8 +218,8 @@ transform: translateX(-295px);
   font-weight: bold;
 }
 
-.closeMissions:hover,
-.closeMissions:focus {
+/* Missions schließen */
+.closeMissions:hover, .closeMissions:focus {
   color: #ff003c;
   text-decoration: none;
   cursor: pointer;
@@ -202,7 +229,7 @@ transform: translateX(-295px);
 .items {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -244,7 +271,7 @@ transform: translateX(-295px);
 .help {
   display: none; 
   position: fixed; 
-  z-index: 1;
+  z-index: 2;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -298,6 +325,7 @@ transform: translateX(-295px);
   border-radius: 5px;
 }
 .timer {
+  z-index: 1;
   padding: 10px;
   font-size: large;
   color: #222f3b;
@@ -305,7 +333,7 @@ transform: translateX(-295px);
 } 
 
 /* menu */
-#menu {
+/* #menu {
     background: #fff;
     position: absolute;
     z-index: 2;
@@ -333,17 +361,17 @@ transform: translateX(-295px);
     border: none;
     }
      
-    #menu a:hover {
+    /* #menu a:hover {
     background-color: #f8f8f8;
     color: #404040;
-    }
+    } */
      
-    #menu a.active {
+    /* #menu a.active {
     background-color: #222f3b;
     color: #ffffff;
-    }
+    } */
      
-    #menu a.active:hover {
+    /* #menu a.active:hover {
     background: #3074a4;
-    }
+    } */ 
         
