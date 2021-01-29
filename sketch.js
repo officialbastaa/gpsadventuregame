@@ -1,10 +1,10 @@
 // Map ----------------------------------------------------!
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXhwZXJpbWVudGFsbW9iaWxlcGxheSIsImEiOiJja2p2Y2xydTIwN2s0MndvYWpmazB4M2IzIn0.q3CYZLs_taS8F7-pA1eF7g';
-var center = [8.8044, 53.0776]; // starting position in Bremen [lng, lat]
+var center = [8.802521, 53.078266]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
-zoom: 13.5, // starting zoom
+zoom: 15, // starting zoom
 center: center,
 });
 
@@ -48,38 +48,38 @@ map.on('load', function () {
 
   // Roland (Source and Layer)
   map.addLayer({
-    'id': 'MISSION 3',
+    'id': 'MISSION-3',
     'type': 'symbol',
     'source': {
       type: 'vector',
       url: 'mapbox://experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-0yqvi'
     },
     'layout': { 'visibility': 'none' },
-    'source-layer': 'MISSION_3'
+    'source-layer': 'MISSION-3'
   });
 
   // Schnoor (Source and Layer)
   map.addLayer({
-    'id': 'MISSION 1',
+    'id': 'MISSION-1',
     'type': 'symbol',
     'source': {
       type: 'vector',
       url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-23jwk'  
     },
     'layout': { 'visibility': 'none' },
-    'source-layer': 'MISSION_1'
+    'source-layer': 'MISSION-1'
   });
 
   // Muehle (Source and Layer)
   map.addLayer({
-    'id': 'MISSION 2',
+    'id': 'MISSION-2',
     'type': 'symbol',
     'source': {
       type: 'vector',
       url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-6hajx'  
     },
     'layout': { 'visibility': 'none' },
-    'source-layer': 'MISSION_2'
+    'source-layer': 'MISSION-2'
   });
 
   // Ziele (Source and Layer)
@@ -109,7 +109,7 @@ map.on('load', function () {
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION 1'] 
+      layers: ['MISSION-1'] 
     });
   
     if (!features.length) {
@@ -127,7 +127,7 @@ map.on('load', function () {
   // Interactive marker (2)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION 2'] 
+      layers: ['MISSION-2'] 
     });
   
     if (!features.length) {
@@ -145,7 +145,7 @@ map.on('load', function () {
   // Interactive marker (3)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION 3'] 
+      layers: ['MISSION-3'] 
     });
   
     if (!features.length) {
@@ -208,21 +208,21 @@ map.on('load', function () {
   });
 
   // Center on marker (1)
-  map.on('click', 'MISSION 1', function (e) {
+  map.on('click', 'MISSION-1', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (2)
-  map.on('click', 'MISSION 2', function (e) {
+  map.on('click', 'MISSION-2', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (3)
-  map.on('click', 'MISSION 3', function (e) {
+  map.on('click', 'MISSION-3', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
@@ -260,7 +260,7 @@ map.on('load', function () {
 
 //Menu --------------------------------!>
 // enumerate ids of the layers (schnoor, muehle, roland)
-var toggleableLayerIds = ['MISSION_1', 'MISSION_2', 'MISSION_3'];
+var toggleableLayerIds = ['MISSION-1', 'MISSION-2', 'MISSION-3'];
 
     // set up the corresponding toggle button for each layer
     for (var i = 0; i < toggleableLayerIds.length; i++) {

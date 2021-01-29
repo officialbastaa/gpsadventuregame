@@ -180,7 +180,7 @@ transform: translateX(-295px);
   font-family: 'MyWebFont', Fallback, sans-serif;
   font-weight: bold;
   text-align: center;
-  padding-left: 25px;
+  padding-left: 48px;
   line-height: 20px;
 }
 
@@ -230,39 +230,7 @@ transform: translateX(-295px);
   z-index: 3;
   width: 300px;
   height: 100%;
-  }
-
-/* Menu in Mission Content */
-/* .missions-content a {
-  background: url(assets/buttonBackground2.svg);
-  background-size: contain;
-  background-position: center; 
-  background-repeat: no-repeat; 
-  display: block;
-  margin: 0;
-  padding: 0;
-  padding: 10px;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-} */
-
-/* Untermenu in Mission Content */
-/* .missions-content-untermenu a {
-  background: url(assets/buttonBackground2.svg);
-  background-size: contain;
-  background-position: center; 
-  background-repeat: no-repeat; 
-  display: block;
-  margin: 0;
-  padding: 0;
-  padding: 10px;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-} */
+}
 
 /* The Close Missions Button */
 .closeMissions {
@@ -292,25 +260,22 @@ transform: translateX(-295px);
   font-size: 18px;
   color: #232524;
   padding: 10px;
-  padding-left: 5px;
+  padding-left: 20px;
   text-align: left;
   line-height: normal;
 }
-
 
 /* Story Content */
 .story-content {
   background-color: #f2e041;
   border-radius: 10px;
   z-index: 3;
-  overflow-y: auto;
 }
 
 .sidebar-story {
   z-index: 3;
   width: 300px;
   height: 100%;
-  overflow-y: auto;
   }
 
 /* The Close Story Button */
