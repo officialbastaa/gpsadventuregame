@@ -18,6 +18,11 @@ map.addControl(
     })
 );
 
+// Radnom User_ID
+var usernumber = function getSixDigitRandom() {
+  document.getElementById("user").innerHTML =  Math.random().toString().substring(2, 8);
+}
+
 // Timer
 var sec = 0;
 
@@ -49,7 +54,7 @@ map.on('load', function () {
       type: 'vector',
       url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
     },
-    'layout': { 'visibility': 'visible' },
+    'layout': { 'visibility': 'none' },
     'source-layer': 'Roland'
   });
 
@@ -61,7 +66,7 @@ map.on('load', function () {
       type: 'vector',
       url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'  
     },
-    'layout': { 'visibility': 'visible' },
+    'layout': { 'visibility': 'none' },
     'source-layer': 'Schnoor'
   });
 
@@ -73,7 +78,7 @@ map.on('load', function () {
       type: 'vector',
       url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'  
     },
-    'layout': { 'visibility': 'visible' },
+    'layout': { 'visibility': 'none' },
     'source-layer': 'Muhele'
   });
 
@@ -101,7 +106,7 @@ map.on('load', function () {
     'source-layer': 'Test'
   });
 
-  
+
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
@@ -156,6 +161,7 @@ map.on('load', function () {
     .addTo(map);
   });
 
+  // Stop Timer when destination reached
   map.on('click', 'destination', function(e) {
     clearInterval(timer);
   });
@@ -202,7 +208,6 @@ map.on('load', function () {
     clearInterval(timer);
   });
 
-
   // Center on marker (1)
   map.on('click', 'schnoor', function (e) {
     map.flyTo({
@@ -247,6 +252,11 @@ map.on('load', function () {
   map.on('mouseleave', 'symbols', function () {
     map.getCanvas().style.cursor = '';
   });
+
+// geocoder.on('result', function(ev) {
+//   var searchResult = ev.result.geometry;
+//   // Code for the next step will go here
+//   });  
 });
 
 //Menu --------------------------------!>
@@ -356,13 +366,13 @@ var story_btn = document.getElementById("myStoryBtn");
 var span = document.getElementsByClassName("closeStory")[0];
 
 // When the user clicks the button, open the Story
-Story_btn.onclick = function() {
-  Story.style.display = "block";
+story_btn.onclick = function() {
+  story.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the Story
 span.onclick = function() {
-  Story.style.display = "none";
+  story.style.display = "none";
 }
 
 // Help
