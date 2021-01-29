@@ -180,8 +180,9 @@ transform: translateX(-295px);
   font-family: 'MyWebFont', Fallback, sans-serif;
   font-weight: bold;
   text-align: center;
-  padding-left: 48px;
+  padding-left: 42px;
   line-height: 20px;
+  text-align: center;
 }
 
 /* Menu in Sidebar Inhalt */

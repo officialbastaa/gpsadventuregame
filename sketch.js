@@ -48,7 +48,7 @@ map.on('load', function () {
 
   // Roland (Source and Layer)
   map.addLayer({
-    'id': 'MISSION-3',
+    'id': 'MISSION 3',
     'type': 'symbol',
     'source': {
       type: 'vector',
@@ -60,7 +60,7 @@ map.on('load', function () {
 
   // Schnoor (Source and Layer)
   map.addLayer({
-    'id': 'MISSION-1',
+    'id': 'MISSION 1',
     'type': 'symbol',
     'source': {
       type: 'vector',
@@ -72,7 +72,7 @@ map.on('load', function () {
 
   // Muehle (Source and Layer)
   map.addLayer({
-    'id': 'MISSION-2',
+    'id': 'MISSION 2',
     'type': 'symbol',
     'source': {
       type: 'vector',
@@ -109,7 +109,7 @@ map.on('load', function () {
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION-1'] 
+      layers: ['MISSION 1'] 
     });
   
     if (!features.length) {
@@ -127,7 +127,7 @@ map.on('load', function () {
   // Interactive marker (2)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION-2'] 
+      layers: ['MISSION 2'] 
     });
   
     if (!features.length) {
@@ -145,7 +145,7 @@ map.on('load', function () {
   // Interactive marker (3)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION-3'] 
+      layers: ['MISSION 3'] 
     });
   
     if (!features.length) {
@@ -208,21 +208,21 @@ map.on('load', function () {
   });
 
   // Center on marker (1)
-  map.on('click', 'MISSION-1', function (e) {
+  map.on('click', 'MISSION 1', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (2)
-  map.on('click', 'MISSION-2', function (e) {
+  map.on('click', 'MISSION 2', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (3)
-  map.on('click', 'MISSION-3', function (e) {
+  map.on('click', 'MISSION 3', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
@@ -260,7 +260,7 @@ map.on('load', function () {
 
 //Menu --------------------------------!>
 // enumerate ids of the layers (schnoor, muehle, roland)
-var toggleableLayerIds = ['MISSION-1', 'MISSION-2', 'MISSION-3'];
+var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
 
     // set up the corresponding toggle button for each layer
     for (var i = 0; i < toggleableLayerIds.length; i++) {
