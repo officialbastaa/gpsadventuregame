@@ -48,38 +48,38 @@ map.on('load', function () {
 
   // Roland (Source and Layer)
   map.addLayer({
-    'id': 'roland',
+    'id': 'MISSION 3',
     'type': 'symbol',
     'source': {
       type: 'vector',
-      url: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u'
+      url: 'mapbox://experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-0yqvi'
     },
     'layout': { 'visibility': 'none' },
-    'source-layer': 'Roland'
+    'source-layer': 'MISSION_3'
   });
 
   // Schnoor (Source and Layer)
   map.addLayer({
-    'id': 'schnoor',
+    'id': 'MISSION 1',
     'type': 'symbol',
     'source': {
       type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-2muoy'  
+      url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-23jwk'  
     },
     'layout': { 'visibility': 'none' },
-    'source-layer': 'Schnoor'
+    'source-layer': 'MISSION_1'
   });
 
   // Muehle (Source and Layer)
   map.addLayer({
-    'id': 'muehle',
+    'id': 'MISSION 2',
     'type': 'symbol',
     'source': {
       type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-0j3bt'  
+      url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-6hajx'  
     },
     'layout': { 'visibility': 'none' },
-    'source-layer': 'Muhele'
+    'source-layer': 'MISSION_2'
   });
 
   // Ziele (Source and Layer)
@@ -106,11 +106,10 @@ map.on('load', function () {
     'source-layer': 'Test'
   });
 
-
   // Interactive marker (1)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['schnoor'] 
+      layers: ['MISSION 1'] 
     });
   
     if (!features.length) {
@@ -128,7 +127,7 @@ map.on('load', function () {
   // Interactive marker (2)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['muehle'] 
+      layers: ['MISSION 2'] 
     });
   
     if (!features.length) {
@@ -146,7 +145,7 @@ map.on('load', function () {
   // Interactive marker (3)
   map.on('click', function(e) {
     var features = map.queryRenderedFeatures(e.point, {
-      layers: ['roland'] 
+      layers: ['MISSION 3'] 
     });
   
     if (!features.length) {
@@ -209,21 +208,21 @@ map.on('load', function () {
   });
 
   // Center on marker (1)
-  map.on('click', 'schnoor', function (e) {
+  map.on('click', 'MISSION 1', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (2)
-  map.on('click', 'muehle', function (e) {
+  map.on('click', 'MISSION 2', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
   });  
 
   // Center on marker (3)
-  map.on('click', 'roland', function (e) {
+  map.on('click', 'MISSION 3', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
@@ -261,37 +260,69 @@ map.on('load', function () {
 
 //Menu --------------------------------!>
 // enumerate ids of the layers (schnoor, muehle, roland)
-var toggleableLayerIds = ['schnoor', 'muehle', 'roland'];
+var toggleableLayerIds = ['MISSION_1', 'MISSION_2', 'MISSION_3'];
+
+    // set up the corresponding toggle button for each layer
+    for (var i = 0; i < toggleableLayerIds.length; i++) {
+      var id = toggleableLayerIds[i];
+
+      var link = document.createElement('a');
+      link.href = '#';
+      link.className = '';
+      link.textContent = id;
+
+      link.onclick = function(e) {
+          var clickedLayer = this.textContent;
+          e.preventDefault();
+          e.stopPropagation(); 
+          for (var j = 0; j < toggleableLayerIds.length; j++) {
+              if (clickedLayer === toggleableLayerIds[j]) {
+                layers.children[j].className = 'active';
+                map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'visible');
+              }
+              else {
+                layers.children[j].className = '';
+                map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
+              }
+          }
+      };
+
+      var layers = document.getElementById('menu');
+      layers.appendChild(link);
+      
+      
+  }
+
  
 // set up the corresponding toggle button for each layer
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-  var id = toggleableLayerIds[i];
+// for (var i = 0; i < toggleableLayerIds.length; i++) {
+//   var id = toggleableLayerIds[i];
  
-  var link = document.createElement('a');
-    link.href = '#';
-    link.className = 'active';
-    link.textContent = id;
+//   var link = document.createElement('a');
+//     link.href = '#';
+//     link.className = 'active';
+//     link.textContent = id;
  
-  link.onclick = function (e) {
-    var clickedLayer = this.textContent;
-    e.preventDefault();
-    e.stopPropagation();
+  // link.onclick = function (e) {
+  //   var clickedLayer = this.textContent;
+  //   e.preventDefault();
+  //   e.stopPropagation();
  
-    var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+  //   var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
  
-    // toggle layer visibility by changing the layout object's visibility property
-    if (visibility === 'visible') {
-      map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-      this.className = '';
-    } else {
-      this.className = 'active';
-      map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-    }
-  };
+  //   // toggle layer visibility by changing the layout object's visibility property
+  //   if (visibility === 'visible') {
+  //     map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+  //     this.className = '';
+  //   } else {
+  //     this.className = 'active';
+  //     map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+  //   }
+  // };
  
-  var layers = document.getElementById('menu');
-    layers.appendChild(link);
-}
+//   var layers = document.getElementById('menu');
+//     layers.appendChild(link);
+// }
 
 // // Camera rotation
 // function rotateCamera(timestamp) {

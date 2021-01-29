@@ -141,7 +141,6 @@ transform: translateX(-295px);
   line-height: normal;
 }
 
-
 /* User ID in Sidebar */
 .userID {
   color: #01f0ff;
@@ -182,7 +181,7 @@ transform: translateX(-295px);
   font-weight: bold;
   text-align: center;
   padding-left: 25px;
-  line-height: 30px;
+  line-height: 20px;
 }
 
 /* Menu in Sidebar Inhalt */
@@ -286,17 +285,32 @@ transform: translateX(-295px);
   z-index: 3;
 }
 
+/* Text in Story in Sidebar */
+.sidebarTextStory {
+  font-family: 'MyWebFont', sans-serif;
+  font-weight: thin;
+  font-size: 18px;
+  color: #232524;
+  padding: 10px;
+  padding-left: 5px;
+  text-align: left;
+  line-height: normal;
+}
+
+
 /* Story Content */
 .story-content {
   background-color: #f2e041;
   border-radius: 10px;
   z-index: 3;
+  overflow-y: auto;
 }
 
 .sidebar-story {
   z-index: 3;
   width: 300px;
   height: 100%;
+  overflow-y: auto;
   }
 
 /* The Close Story Button */
