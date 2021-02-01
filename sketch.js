@@ -26,7 +26,7 @@ geolocate.on('geolocate', function(e) {
 // function pad(val) {
 //     return val > 9 ? val : "0" + val;
 // }
-// var timer = setInterval(function () {
+// var timer = setInterval(function _() {
 //     document.getElementById("seconds").innerHTML = pad(++sec % 60);
 //     document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
 // }, 1000);
@@ -160,6 +160,7 @@ map.on('load', function () {
   });  
 });
 
+
 //Menu --------------------------------!>
 // enumerate ids of the layers (schnoor, muehle, roland)
 var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
@@ -181,36 +182,26 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
               if (clickedLayer === toggleableLayerIds[j]) {
                 layers.children[j].className = 'active';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'visible');
-                
+
                 // Timer
                 var sec = 0;
 
                 function pad(val) {
                     return val > 9 ? val : "0" + val;
                 }
-                var timer = setInterval(function () {
+                var timer = setInterval(function _() {
                     document.getElementById("seconds").innerHTML = pad(++sec % 60);
                     document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
                 }, 1000);
-
-                setTimeout(function () {
-                    clearInterval(timer);
-                }, 1110000);
-                if (clickedLayer != toggleableLayerIds[j]) {
-                  clearInterval(timer);
-                }
-              }
+}
               else {
                 layers.children[j].className = '';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
               }
           }
       };
-
       var layers = document.getElementById('menu');
-      layers.appendChild(link);
-      
-      
+      layers.appendChild(link);  
   }
 
 //Sidebar
@@ -293,18 +284,19 @@ help_btn.onclick = function() {
 span.onclick = function() {
   help.style.display = "none";
 }
+
 //audio
-var audio = document.getElementById('audio_1');
-audio.addEventListener('ended', function() {
-  loop();
-}, false);
+// var audio = document.getElementById('audio_1');
+// audio.addEventListener('ended', function() {
+//   loop();
+// }, false);
 
-function loop() {
-  audio.currentTime = 0; //rewind audio track to the beginning
-  audio.play(); // play it
-}
+// function loop() {
+//   audio.currentTime = 0; //rewind audio track to the beginning
+//   audio.play(); // play it
+// }
 
-//also manually trigger play when it is able to play ie. when files is loaded sufficiently for playing
-audio.addEventListener('canplay', function() {
-  audio.play(); // play it
-}, false);
+// //also manually trigger play when it is able to play ie. when files is loaded sufficiently for playing
+// audio.addEventListener('canplay', function() {
+//   audio.play(); // play it
+// }, false);
