@@ -196,6 +196,9 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
                 setTimeout(function () {
                     clearInterval(timer);
                 }, 1110000);
+                if (clickedLayer != toggleableLayerIds[j]) {
+                  clearInterval(timer);
+                }
               }
               else {
                 layers.children[j].className = '';
@@ -290,3 +293,18 @@ help_btn.onclick = function() {
 span.onclick = function() {
   help.style.display = "none";
 }
+//audio
+var audio = document.getElementById('audio_1');
+audio.addEventListener('ended', function() {
+  loop();
+}, false);
+
+function loop() {
+  audio.currentTime = 0; //rewind audio track to the beginning
+  audio.play(); // play it
+}
+
+//also manually trigger play when it is able to play ie. when files is loaded sufficiently for playing
+audio.addEventListener('canplay', function() {
+  audio.play(); // play it
+}, false);
