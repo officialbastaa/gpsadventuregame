@@ -285,18 +285,18 @@ span.onclick = function() {
   help.style.display = "none";
 }
 
-//audio
-// var audio = document.getElementById('audio_1');
-// audio.addEventListener('ended', function() {
-//   loop();
-// }, false);
+audio
+var audio = document.getElementById('audio_1');
+audio.addEventListener('ended', function() {
+  loop();
+}, false);
 
-// function loop() {
-//   audio.currentTime = 0; //rewind audio track to the beginning
-//   audio.play(); // play it
-// }
+function loop() {
+  audio.currentTime = 0; //rewind audio track to the beginning
+  audio.play(); // play it
+}
 
-// //also manually trigger play when it is able to play ie. when files is loaded sufficiently for playing
-// audio.addEventListener('canplay', function() {
-//   audio.play(); // play it
-// }, false);
+//also manually trigger play when it is able to play ie. when files is loaded sufficiently for playing
+audio.addEventListener('canplay', function() {
+  audio.play(); // play it
+}, false);
