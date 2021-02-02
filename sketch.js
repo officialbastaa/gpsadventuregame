@@ -1,6 +1,6 @@
 // Map ----------------------------------------------------!
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXhwZXJpbWVudGFsbW9iaWxlcGxheSIsImEiOiJja2p2Y2xydTIwN2s0MndvYWpmazB4M2IzIn0.q3CYZLs_taS8F7-pA1eF7g';
-var center = [8.802521, 53.078266]; // starting position in Bremen [lng, lat]
+var center = [8.807682, 53.075962]; // starting position in Bremen [lng, lat]
 const map = new mapboxgl.Map({
 container: 'map', // container id
 style: 'mapbox://styles/experimentalmobileplay/ckjvg4ijw0m6117o2iy47zi5u', // style URL
@@ -9,8 +9,13 @@ center: center,
 });
 
 // Add geolocate control to the map.
-var geolocate = new mapboxgl.GeolocateControl();
-
+var geolocate = new mapboxgl.GeolocateControl({
+  positionOptions: {
+    enableHighAccuracy: true
+  },
+  trackUserLocation: true
+  });
+    
 map.addControl(geolocate);
 
 geolocate.on('geolocate', function(e) {
@@ -18,7 +23,62 @@ geolocate.on('geolocate', function(e) {
       var lat = e.coords.latitude
       var userPosition = [lon, lat];
       console.log(userPosition);
+
+      map.addSource("polygon", createGeoJSONCircle([lon, lat], 1));
+      map.addLayer({
+          "id": "polygon",
+          "type": "fill",
+          "source": "polygon",
+          "layout": {},
+          "paint": {
+              "fill-color": "blue",
+              "fill-opacity": 0.1
+          }
+      });
+    
 });
+
+var createGeoJSONCircle = function(center, radiusInKm, points) {
+  if(!points) points = 64;
+
+  var coords = {
+      latitude: center[1],
+      longitude: center[0]
+  };
+
+  var km = radiusInKm;
+
+  var ret = [];
+  // var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
+  // var distanceY = km/110.574;
+  var distanceX = km/(1600*Math.cos(coords.latitude*Math.PI/180));
+  var distanceY = km/1600;
+
+
+  var theta, x, y;
+  for(var i=0; i<points; i++) {
+      theta = (i/points)*(2*Math.PI);
+      x = distanceX*Math.cos(theta);
+      y = distanceY*Math.sin(theta);
+
+      ret.push([coords.longitude+x, coords.latitude+y]);
+  }
+  ret.push(ret[0]);
+
+  return {
+      "type": "geojson",
+      "data": {
+          "type": "FeatureCollection",
+          "features": [{
+              "type": "Feature",
+              "geometry": {
+                  "type": "Polygon",
+                  "coordinates": [ret]
+              }
+          }]
+      }
+  };
+};
 
 // Timer
 // var sec = 0;
@@ -37,6 +97,8 @@ geolocate.on('geolocate', function(e) {
 
 
 map.on('load', function () {
+
+  // map.addSource("polygon", createGeoJSONCircle([8.807304074485293, 53.07587976737278], 0.5));  
 
   // Sidebar
   toggleSidebar('left');
@@ -285,7 +347,7 @@ span.onclick = function() {
   help.style.display = "none";
 }
 
-audio
+//audio
 var audio = document.getElementById('audio_1');
 audio.addEventListener('ended', function() {
   loop();
