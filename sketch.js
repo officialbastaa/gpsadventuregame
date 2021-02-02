@@ -350,6 +350,7 @@ span.onclick = function() {
 
 //audio
 var audio = document.getElementById('audio_1');
+audio.volume = 0.2;
 audio.addEventListener('ended', function() {
   loop();
 }, false);
