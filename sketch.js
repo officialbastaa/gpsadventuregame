@@ -20,7 +20,7 @@ map.addControl(geolocate);
 
 geolocate.on('geolocate', function(e) {
       var lon = e.coords.longitude;
-      var lat = e.coords.latitude
+      var lat = e.coords.latitude;
       var userPosition = [lon, lat];
       console.log(userPosition);
 
@@ -35,8 +35,7 @@ geolocate.on('geolocate', function(e) {
               "fill-opacity": 0.1
           }
       });
-    
-});
+  });
 
 var createGeoJSONCircle = function(center, radiusInKm, points) {
   if(!points) points = 64;
@@ -86,20 +85,17 @@ var createGeoJSONCircle = function(center, radiusInKm, points) {
 // function pad(val) {
 //     return val > 9 ? val : "0" + val;
 // }
-// var timer = setInterval(function _() {
-//     document.getElementById("seconds").innerHTML = pad(++sec % 60);
-//     document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-// }, 1000);
+var timer = setInterval(function _() {
+    document.getElementById("seconds").innerHTML = pad(++sec % 60);
+    document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+}, 1000);
 
-// setTimeout(function () {
-//     clearInterval(timer);
-// }, 1110000);
+setTimeout(function () {
+    clearInterval(timer);
+}, 1110000);
 
 
 map.on('load', function () {
-
-  // map.addSource("polygon", createGeoJSONCircle([8.807304074485293, 53.07587976737278], 0.5));  
-
   // Sidebar
   toggleSidebar('left');
     
@@ -181,11 +177,6 @@ map.on('load', function () {
     .addTo(map);
   });
   
-  // Timer stop when Ziel erreicht
-  map.on('click', 'destination', function(e) {
-    clearInterval(timer);
-  });
-
   // Center on marker (1)
   map.on('click', 'MISSION 1', function (e) {
     map.flyTo({
@@ -207,12 +198,17 @@ map.on('load', function () {
     });
   });  
 
+  // Timer stop when Ziel erreicht
+  map.on('click', 'destination', function(e) {
+    clearInterval(timer);
+  });
+
   // Center on Ziele (4)
   map.on('click', 'destination', function (e) {
     map.flyTo({
       center: e.features[0].geometry.coordinates
     });
-  });  
+});  
 
   // Center on Test (5)
   map.on('click', 'test', function (e) {
@@ -259,6 +255,11 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
               else {
                 layers.children[j].className = '';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
+
+                setTimeout(function () {
+                  clearInterval(timer);
+                }, 1110000);
+
               }
           }
       };
