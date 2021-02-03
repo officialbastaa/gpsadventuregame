@@ -24,60 +24,69 @@ geolocate.on('geolocate', function(e) {
       var userPosition = [lon, lat];
       console.log(userPosition);
 
-      map.addSource("polygon", createGeoJSONCircle([lon, lat], 1));
-      map.addLayer({
-          "id": "polygon",
-          "type": "fill",
-          "source": "polygon",
-          "layout": {},
-          "paint": {
-              "fill-color": "blue",
-              "fill-opacity": 0.1
-          }
-      });
+      // map.addSource("polygon", createGeoJSONCircle([lon, lat], 1));
+      // map.addLayer({
+      //     "id": "polygon",
+      //     "type": "fill",
+      //     "source": "polygon",
+      //     "layout": {},
+      //     "paint": {
+      //         "fill-color": "blue",
+      //         "fill-opacity": 0.1
+      //     }
+      // });
   });
 
-var createGeoJSONCircle = function(center, radiusInKm, points) {
-  if(!points) points = 64;
+// var createGeoJSONCircle = function(center, radiusInKm, points) {
+//   if(!points) points = 64;
 
-  var coords = {
-      latitude: center[1],
-      longitude: center[0]
-  };
+//   var coords = {
+//       latitude: center[1],
+//       longitude: center[0]
+//   };
 
-  var km = radiusInKm;
+//   var km = radiusInKm;
 
-  var ret = [];
-  // var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
-  // var distanceY = km/110.574;
-  var distanceX = km/(1600*Math.cos(coords.latitude*Math.PI/180));
-  var distanceY = km/1600;
+//   var ret = [];
+//   // var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
+//   // var distanceY = km/110.574;
+//   var distanceX = km/(1600*Math.cos(coords.latitude*Math.PI/180));
+//   var distanceY = km/1600;
 
 
-  var theta, x, y;
-  for(var i=0; i<points; i++) {
-      theta = (i/points)*(2*Math.PI);
-      x = distanceX*Math.cos(theta);
-      y = distanceY*Math.sin(theta);
+//   var theta, x, y;
+//   for(var i=0; i<points; i++) {
+//       theta = (i/points)*(2*Math.PI);
+//       x = distanceX*Math.cos(theta);
+//       y = distanceY*Math.sin(theta);
 
-      ret.push([coords.longitude+x, coords.latitude+y]);
-  }
-  ret.push(ret[0]);
+//       ret.push([coords.longitude+x, coords.latitude+y]);
+//   }
+//   ret.push(ret[0]);
 
-  return {
-      "type": "geojson",
-      "data": {
-          "type": "FeatureCollection",
-          "features": [{
-              "type": "Feature",
-              "geometry": {
-                  "type": "Polygon",
-                  "coordinates": [ret]
-              }
-          }]
-      }
-  };
-};
+//   return {
+//       "type": "geojson",
+//       "data": {
+//           "type": "FeatureCollection",
+//           "features": [{
+//               "type": "Feature",
+//               "geometry": {
+//                   "type": "Polygon",
+//                   "coordinates": [ret]
+//               }
+//           }]
+//       }
+//   };
+// };
+
+map.on('geolocate', function(e) {
+  filterCircle.setLatLng(e.latlng);
+  csvLayer.setFilter(function showAirport(feature) {
+      return e.latlng.distanceTo(L.latLng(
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0])) < RADIUS;
+  });
+});
 
 // Timer
 // var sec = 0;
@@ -251,7 +260,7 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
                     document.getElementById("seconds").innerHTML = pad(++sec % 60);
                     document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
                 }, 1000);
-}
+              }
               else {
                 layers.children[j].className = '';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
