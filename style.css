@@ -429,6 +429,30 @@ body {
   font-weight: bold;
 } 
 
+/* Target found button */
+#target-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  text-align: center;
+  top: 875px;
+  width: 140px; 
+  background: #f5e042;
+  font-family: 'MyWebFont', Fallback, sans-serif;
+  border-radius: 5px;
+}
+
+.target {
+  background-color: #f5e042;
+  z-index: 1;
+  padding: 10px;
+  font-size: large;
+  color: #222f3b;
+  font-weight: bold;
+} 
+
+
 
 
 /* make a guess*/

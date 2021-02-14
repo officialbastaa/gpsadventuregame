@@ -51,6 +51,35 @@ map.on('load', function () {
     var from = turf.point([lon, lat]);  // coords of own location
     var options = { units: 'kilometers' };
 
+    // Targets 
+    var targets = [
+    [8.80689, 53.08016],
+    [8.807326, 53.075905], 
+    [8.809213, 53.073001], 
+    [8.797201, 53.072555],
+    [8.799336, 53.070125],
+    [13.396984, 52.5711],
+    [13.400888, 52.565573],
+    [10.390921, 53.21386]]
+    
+    // Measuring distance to target
+    for(var itemIndex in targets){
+      var to = targets[itemIndex]
+      var entfernung = turf.distance(to, from, options)
+    }
+    console.log("Entfernung: " + entfernung);
+    if(entfernung < 0.02){
+      var features = map.queryRenderedFeatures(e.point, {
+        layers: ['destination'] 
+      });
+      if (!features.length) { return; }   
+      var feature = features[0];
+      var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+      .addTo(map);
+    } 
+
     // Center on marker (1)
     map.on('click', 'MISSION 1', function (e) {
 
