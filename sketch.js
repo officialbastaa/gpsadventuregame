@@ -23,21 +23,6 @@ geolocate.on('geolocate', function(e) {
       console.log("Userlocation: " + userPosition);
 });
 
-// Timer
-var sec = 0;
-
-function pad(val) {
-    return val > 9 ? val : "0" + val;
-}
-var timer = setInterval(function _() {
-    document.getElementById("seconds").innerHTML = pad(++sec % 60);
-    document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-}, 1000);
-
-setTimeout(function () {
-    clearInterval(timer);
-}, 1110000);
-
 map.on('load', function () {
   // Sidebar
   toggleSidebar('left');  
@@ -48,6 +33,19 @@ map.on('load', function () {
     var lat = e.coords.latitude;
     var userPosition = [lon, lat];
     console.log("Userlocation: " + userPosition);
+  
+    // Timer
+    var sec = 0;
+    function pad(val) {
+      return val > 9 ? val : "0" + val;
+    }            
+    var timer = setInterval(function _() {
+      document.getElementById("seconds").innerHTML = pad(++sec % 60);
+      document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+    }, 1000);
+    setTimeout(function () {
+      clearInterval(timer);
+    }, 1110000);
 
     // Measuring distances
     var from = turf.point([lon, lat]);  // coords of own location
@@ -172,12 +170,13 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
-      } else {
-        var popup = new mapboxgl.Popup({ offset: [0, -15] })
-        .setLngLat(e.features[0].geometry.coordinates)
-        .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
-        .addTo(map);
-      }
+      } 
+      // else {
+      //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
+      //   .setLngLat(e.features[0].geometry.coordinates)
+      //   .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
+      //   .addTo(map);
+      // }
     });  
 
     // Center on Test (5)
@@ -214,9 +213,9 @@ map.on('load', function () {
 
     // Timer stop when Ziel erreicht
     map.on('click', 'destination', function(e) {
-      clearInterval(timer);
+        clearInterval(timer);
+        console.log("Timer Stop"); 
     });
-    
   });
 });
 
@@ -245,23 +244,16 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
 
                 // Timer
                 var sec = 0;
-
                 function pad(val) {
-                    return val > 9 ? val : "0" + val;
-                }
+                  return val > 9 ? val : "0" + val;
+                }            
                 var timer = setInterval(function _() {
                     document.getElementById("seconds").innerHTML = pad(++sec % 60);
                     document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
                 }, 1000);
-              }
-              else {
+              } else {
                 layers.children[j].className = '';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
-
-                setTimeout(function () {
-                  clearInterval(timer);
-                }, 1110000);
-
               }
           }
       };
