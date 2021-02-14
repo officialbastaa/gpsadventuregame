@@ -14,86 +14,136 @@ var geolocate = new mapboxgl.GeolocateControl({
     enableHighAccuracy: true
   },
   trackUserLocation: true
-  });
-    
+  });   
 map.addControl(geolocate);
-
 geolocate.on('geolocate', function(e) {
       var lon = e.coords.longitude;
       var lat = e.coords.latitude;
       var userPosition = [lon, lat];
-      console.log(userPosition);
+      console.log("Userlocation: " + userPosition);
+  
 
-      // map.addSource("polygon", createGeoJSONCircle([lon, lat], 1));
-      // map.addLayer({
-      //     "id": "polygon",
-      //     "type": "fill",
-      //     "source": "polygon",
-      //     "layout": {},
-      //     "paint": {
-      //         "fill-color": "blue",
-      //         "fill-opacity": 0.1
-      //     }
-      // });
-  });
+      // document.addEventListener('click', function () {
+      //   // Get Distance between two points
+      //   for (var itemIndex in markers){
+      //     var to = markers[itemIndex] // coords of an index in markers
+      //     var from = turf.point([lon, lat]);  // coords of own location
+      //     var options = { units: 'kilometers' };
+      //     var distance = turf.distance(to, from, options)
+      //     console.log(distance);
+      //   }
+      // })
 
-// var createGeoJSONCircle = function(center, radiusInKm, points) {
-//   if(!points) points = 64;
-
-//   var coords = {
-//       latitude: center[1],
-//       longitude: center[0]
-//   };
-
-//   var km = radiusInKm;
-
-//   var ret = [];
-//   // var distanceX = km/(111.320*Math.cos(coords.latitude*Math.PI/180));
-//   // var distanceY = km/110.574;
-//   var distanceX = km/(1600*Math.cos(coords.latitude*Math.PI/180));
-//   var distanceY = km/1600;
-
-
-//   var theta, x, y;
-//   for(var i=0; i<points; i++) {
-//       theta = (i/points)*(2*Math.PI);
-//       x = distanceX*Math.cos(theta);
-//       y = distanceY*Math.sin(theta);
-
-//       ret.push([coords.longitude+x, coords.latitude+y]);
-//   }
-//   ret.push(ret[0]);
-
-//   return {
-//       "type": "geojson",
-//       "data": {
-//           "type": "FeatureCollection",
-//           "features": [{
-//               "type": "Feature",
-//               "geometry": {
-//                   "type": "Polygon",
-//                   "coordinates": [ret]
-//               }
-//           }]
-//       }
-//   };
-// };
-
-map.on('geolocate', function(e) {
-  filterCircle.setLatLng(e.latlng);
-  csvLayer.setFilter(function showAirport(feature) {
-      return e.latlng.distanceTo(L.latLng(
-              feature.geometry.coordinates[1],
-              feature.geometry.coordinates[0])) < RADIUS;
-  });
+  //  if(distance < 0.2){
+  //   map.on('click', function(e) {
+  //   var features = map.queryRenderedFeatures(e.point, {
+  //     layers: ['test'] 
+  //   });
+    
+  //   if (!features.length) {
+  //     return;
+  //   }
+      
+  //   var feature = features[0];
+    
+  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
+  //   .setLngLat(feature.geometry.coordinates)
+  //   .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+  //   .addTo(map);
+  //   });
+  //  }
 });
 
-// Timer
-// var sec = 0;
+// Array with all marker coords
+var markers = [
+    // Schnoor
+    [8.8114, 53.07112],
+    [8.811566, 53.07184],
+    [8.811528, 53.072896],
+    [8.809224, 53.071868],
+    [8.80995, 53.07366],
+    [8.81215, 53.075229],
+    [8.80776, 53.07384],
+    [8.808876, 53.074809],
+    [8.806285, 53.073478],
+    [8.809054, 53.076068],
+    [8.807105, 53.075804],
+    [8.804721, 53.075075],
+    [8.80529, 53.075591],
+    [8.808109, 53.076943],
+    // Roland
+    [8.808002, 53.078613],
+    [8.807249, 53.077211],
+    [8.804621, 53.077076],
+    [8.811235, 53.076969],
+    [8.802397, 53.075821],
+    [8.805748, 53.074927],
+    [8.811307, 53.074943],
+    [8.807946, 53.074516],
+    // Mühle
+    [8.805663, 53.082418],
+    [8.808337, 53.081283],
+    [8.803572, 53.080051],
+    [8.81116, 53.07907],
+    [8.802382, 53.078034],
+    [8.807041, 53.077754],
+    [8.80949, 53.07642],
+    [8.806704, 53.076099],
+    // Test Sören
+    // [8.841517, 53.069567],
+    // Test
+    [8.799155, 53.072652],
+    [8.798255, 53.072108],
+    [8.797154, 53.071649],
+    [13.402722, 52.565494],
+    [13.402678, 52.56385],
+    [13.402916, 52.562833],
+    [10.391204, 53.213447],
+    [10.391415, 53.212974],
+    [10.391649, 53.212456],
+    // Destinations
+    [8.80689, 53.08016],
+    [8.807326, 53.075905],
+    [8.809213, 53.073001],
+    [8.797201, 53.072555],
+    [8.799336, 53.070125],
+    [13.400888, 52.565573],
+    [13.396984, 52.5711],
+    [10.390921, 53.21386]
+  ];
+  
+  // // Get Distance between two points
+//   var to = turf.point([10.391649, 53.212456]);
+//   var from = turf.point([userPosition]);
+//   var options = { units: 'kilometers' };
+//   var distance = turf.distance(to, from, options)
+//   console.log(distance);
 
-// function pad(val) {
-//     return val > 9 ? val : "0" + val;
-// }
+//    if(distance < 0.2){
+//     map.on('click', function(e) {
+//     var features = map.queryRenderedFeatures(e.point, {
+//       layers: ['test'] 
+//     });
+    
+//     if (!features.length) {
+//       return;
+//     }
+      
+//     var feature = features[0];
+    
+//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//     .setLngLat(feature.geometry.coordinates)
+//     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+//     .addTo(map);
+//     });
+//    }
+
+// Timer
+var sec = 0;
+
+function pad(val) {
+    return val > 9 ? val : "0" + val;
+}
 var timer = setInterval(function _() {
     document.getElementById("seconds").innerHTML = pad(++sec % 60);
     document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
@@ -103,128 +153,161 @@ setTimeout(function () {
     clearInterval(timer);
 }, 1110000);
 
-
 map.on('load', function () {
   // Sidebar
-  toggleSidebar('left');
-    
-  // Roland (Source and Layer)
-  map.addLayer({
-    'id': 'MISSION 3',
-    'type': 'symbol',
-    'source': {
-      type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckjyfh1vi07ug27rp9tbh6an8-0yqvi'
-    },
-    'layout': { 'visibility': 'none' },
-    'source-layer': 'MISSION-3'
-  });
+  toggleSidebar('left');  
 
-  // Schnoor (Source and Layer)
-  map.addLayer({
-    'id': 'MISSION 1',
-    'type': 'symbol',
-    'source': {
-      type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckjx1zf7u0gtu20nu2hqprbtf-23jwk'  
-    },
-    'layout': { 'visibility': 'none' },
-    'source-layer': 'MISSION-1'
-  });
+  // If geolocation is on
+  geolocate.on('geolocate', function(e) {
+    var lon = e.coords.longitude;
+    var lat = e.coords.latitude;
+    var userPosition = [lon, lat];
+    console.log("Userlocation: " + userPosition);
 
-  // Muehle (Source and Layer)
-  map.addLayer({
-    'id': 'MISSION 2',
-    'type': 'symbol',
-    'source': {
-      type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckjyf56up0lif28ms5jx2c3ah-6hajx'  
-    },
-    'layout': { 'visibility': 'none' },
-    'source-layer': 'MISSION-2'
-  });
+    // Measuring distances
+    var from = turf.point([lon, lat]);  // coords of own location
+    var options = { units: 'kilometers' };
 
-  // Ziele (Source and Layer)
-  map.addLayer({
-    'id': 'destination',
-    'type': 'symbol',
-    'source': {
-      type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckkff5sp815a027l5edv06deq-84id3'  
-    },
-    'layout': { 'visibility': 'visible' },
-    'source-layer': 'Destination'
-  });
+    // Center on marker (1)
+    map.on('click', 'MISSION 1', function (e) {
 
-  // Test (Source and Layer)
-  map.addLayer({
-    'id': 'test',
-    'type': 'symbol',
-    'source': {
-      type: 'vector',
-      url: 'mapbox://experimentalmobileplay.ckkfgab5r03rw21qq501s7yqm-9au3z'  
-    },
-    'layout': { 'visibility': 'visible' },
-    'source-layer': 'Test'
-  });
+      // Center on marker
+      map.flyTo({
+        center: e.features[0].geometry.coordinates
+      });
+      // Measuring distance to geolocation
+      var to = e.features[0].geometry.coordinates
+      var distance = turf.distance(to, from, options)
+      console.log(distance);
 
-  // Interactive marker
-  map.on('click', function(e) {
-    var features = map.queryRenderedFeatures(e.point, {
-      layers: ['MISSION 1','MISSION 2','MISSION 3', 'destination', 'test'] 
-    });
-    
-    if (!features.length) {
-      return;
-    }
+      // show popup if player within distance
+      if(distance < 0.02){
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['MISSION 1'] 
+        });
+        if (!features.length) { return; }   
+        var feature = features[0];
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      }
+    });  
+
+    // Center on marker (2)
+    map.on('click', 'MISSION 2', function (e) {
+          
+      // Center on marker
+      map.flyTo({
+        center: e.features[0].geometry.coordinates
+      });
+
+      // Measuring distance to geolocation
+      var to = e.features[0].geometry.coordinates
+      var distance = turf.distance(to, from, options)
+      console.log(distance);
       
-    var feature = features[0];
+      // show popup if player within distance
+      if(distance < 0.02){
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['MISSION 2'] 
+        });
+        if (!features.length) { return; }   
+        var feature = features[0];
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      }
+    });  
+
+    // Center on marker (3)
+    map.on('click', 'MISSION 3', function (e) {
+
+      // Center on marker
+      map.flyTo({
+        center: e.features[0].geometry.coordinates
+      });
+      
+      // Measuring distance to geolocation
+      var to = e.features[0].geometry.coordinates
+      var distance = turf.distance(to, from, options)
+      console.log(distance);
+        
+      // show popup if player within distance
+      if(distance < 0.02){
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['MISSION 3'] 
+        });
+        if (!features.length) { return; }   
+        var feature = features[0];
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      }
+    });  
+
+    // Center on Ziele (4)
+    map.on('click', 'destination', function (e) {
+
+      // Center on marker
+      map.flyTo({
+        center: e.features[0].geometry.coordinates
+      });
+
+      // Measuring distance to geolocation
+      var to = e.features[0].geometry.coordinates
+      var distance = turf.distance(to, from, options)
+      console.log(distance);
+        
+      // show popup if player within distance
+      if(distance < 0.02){
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['destination'] 
+        });
+        if (!features.length) { return; }   
+        var feature = features[0];
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      }
+    });  
+
+    // Center on Test (5)
+    map.on('click', 'test', function (e) {
     
-    var popup = new mapboxgl.Popup({ offset: [0, -15] })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-    .addTo(map);
+      // Center on marker
+      map.flyTo({
+        center: e.features[0].geometry.coordinates
+      });
+
+      // Measuring distance to geolocation
+      var to = e.features[0].geometry.coordinates
+      var distance = turf.distance(to, from, options)
+      console.log(distance);
+
+      // show popup if player within distance
+      if(distance < 0.02){
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ['test'] 
+        });
+        if (!features.length) { return; }   
+        var feature = features[0];
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      }
+    });
+
+    // Timer stop when Ziel erreicht
+    map.on('click', 'destination', function(e) {
+      clearInterval(timer);
+    });
+    
   });
-  
-  // Center on marker (1)
-  map.on('click', 'MISSION 1', function (e) {
-    map.flyTo({
-      center: e.features[0].geometry.coordinates
-    });
-  });  
-
-  // Center on marker (2)
-  map.on('click', 'MISSION 2', function (e) {
-    map.flyTo({
-      center: e.features[0].geometry.coordinates
-    });
-  });  
-
-  // Center on marker (3)
-  map.on('click', 'MISSION 3', function (e) {
-    map.flyTo({
-      center: e.features[0].geometry.coordinates
-    });
-  });  
-
-  // Timer stop when Ziel erreicht
-  map.on('click', 'destination', function(e) {
-    clearInterval(timer);
-  });
-
-  // Center on Ziele (4)
-  map.on('click', 'destination', function (e) {
-    map.flyTo({
-      center: e.features[0].geometry.coordinates
-    });
-});  
-
-  // Center on Test (5)
-  map.on('click', 'test', function (e) {
-    map.flyTo({
-      center: e.features[0].geometry.coordinates
-    });
-  });  
 });
 
 
