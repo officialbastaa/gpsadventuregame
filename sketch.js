@@ -21,122 +21,7 @@ geolocate.on('geolocate', function(e) {
       var lat = e.coords.latitude;
       var userPosition = [lon, lat];
       console.log("Userlocation: " + userPosition);
-  
-
-      // document.addEventListener('click', function () {
-      //   // Get Distance between two points
-      //   for (var itemIndex in markers){
-      //     var to = markers[itemIndex] // coords of an index in markers
-      //     var from = turf.point([lon, lat]);  // coords of own location
-      //     var options = { units: 'kilometers' };
-      //     var distance = turf.distance(to, from, options)
-      //     console.log(distance);
-      //   }
-      // })
-
-  //  if(distance < 0.2){
-  //   map.on('click', function(e) {
-  //   var features = map.queryRenderedFeatures(e.point, {
-  //     layers: ['test'] 
-  //   });
-    
-  //   if (!features.length) {
-  //     return;
-  //   }
-      
-  //   var feature = features[0];
-    
-  //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
-  //   .setLngLat(feature.geometry.coordinates)
-  //   .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-  //   .addTo(map);
-  //   });
-  //  }
 });
-
-// Array with all marker coords
-var markers = [
-    // Schnoor
-    [8.8114, 53.07112],
-    [8.811566, 53.07184],
-    [8.811528, 53.072896],
-    [8.809224, 53.071868],
-    [8.80995, 53.07366],
-    [8.81215, 53.075229],
-    [8.80776, 53.07384],
-    [8.808876, 53.074809],
-    [8.806285, 53.073478],
-    [8.809054, 53.076068],
-    [8.807105, 53.075804],
-    [8.804721, 53.075075],
-    [8.80529, 53.075591],
-    [8.808109, 53.076943],
-    // Roland
-    [8.808002, 53.078613],
-    [8.807249, 53.077211],
-    [8.804621, 53.077076],
-    [8.811235, 53.076969],
-    [8.802397, 53.075821],
-    [8.805748, 53.074927],
-    [8.811307, 53.074943],
-    [8.807946, 53.074516],
-    // Mühle
-    [8.805663, 53.082418],
-    [8.808337, 53.081283],
-    [8.803572, 53.080051],
-    [8.81116, 53.07907],
-    [8.802382, 53.078034],
-    [8.807041, 53.077754],
-    [8.80949, 53.07642],
-    [8.806704, 53.076099],
-    // Test Sören
-    // [8.841517, 53.069567],
-    // Test
-    [8.799155, 53.072652],
-    [8.798255, 53.072108],
-    [8.797154, 53.071649],
-    [13.402722, 52.565494],
-    [13.402678, 52.56385],
-    [13.402916, 52.562833],
-    [10.391204, 53.213447],
-    [10.391415, 53.212974],
-    [10.391649, 53.212456],
-    // Destinations
-    [8.80689, 53.08016],
-    [8.807326, 53.075905],
-    [8.809213, 53.073001],
-    [8.797201, 53.072555],
-    [8.799336, 53.070125],
-    [13.400888, 52.565573],
-    [13.396984, 52.5711],
-    [10.390921, 53.21386]
-  ];
-  
-  // // Get Distance between two points
-//   var to = turf.point([10.391649, 53.212456]);
-//   var from = turf.point([userPosition]);
-//   var options = { units: 'kilometers' };
-//   var distance = turf.distance(to, from, options)
-//   console.log(distance);
-
-//    if(distance < 0.2){
-//     map.on('click', function(e) {
-//     var features = map.queryRenderedFeatures(e.point, {
-//       layers: ['test'] 
-//     });
-    
-//     if (!features.length) {
-//       return;
-//     }
-      
-//     var feature = features[0];
-    
-//     var popup = new mapboxgl.Popup({ offset: [0, -15] })
-//     .setLngLat(feature.geometry.coordinates)
-//     .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
-//     .addTo(map);
-//     });
-//    }
 
 // Timer
 var sec = 0;
@@ -191,6 +76,11 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
+      } else {
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
+        .addTo(map);
       }
     });  
 
@@ -217,6 +107,11 @@ map.on('load', function () {
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      } else {
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
         .addTo(map);
       }
     });  
@@ -245,6 +140,11 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
+      } else {
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
+        .addTo(map);
       }
     });  
 
@@ -272,6 +172,11 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
+      } else {
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
+        .addTo(map);
       }
     });  
 
@@ -298,6 +203,11 @@ map.on('load', function () {
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
+        .addTo(map);
+      } else {
+        var popup = new mapboxgl.Popup({ offset: [0, -15] })
+        .setLngLat(e.features[0].geometry.coordinates)
+        .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
         .addTo(map);
       }
     });
