@@ -16,12 +16,6 @@ var geolocate = new mapboxgl.GeolocateControl({
   trackUserLocation: true
   });   
 map.addControl(geolocate);
-geolocate.on('geolocate', function(e) {
-      var lon = e.coords.longitude;
-      var lat = e.coords.latitude;
-      var userPosition = [lon, lat];
-      console.log("Userlocation: " + userPosition);
-});
 
 map.on('load', function () {
   // Sidebar
@@ -34,18 +28,18 @@ map.on('load', function () {
     var userPosition = [lon, lat];
     console.log("Userlocation: " + userPosition);
 
-      // Timer
-      var sec = 0;
-      function pad(val) {
-        return val > 9 ? val : "0" + val;
-      }            
-      var timer = setInterval(function _() {
-        document.getElementById("seconds").innerHTML = pad(++sec % 60);
-        document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-      }, 1000);
-      setTimeout(function () {
-        clearInterval(timer);
-      }, 1110000);
+      // // Timer
+      // var sec = 0;
+      // function pad(val) {
+      //   return val > 9 ? val : "0" + val;
+      // }            
+      // var timer = setInterval(function _() {
+      //   document.getElementById("seconds").innerHTML = pad(++sec % 60);
+      //   document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      // }, 1000);
+      // setTimeout(function () {
+      //   clearInterval(timer);
+      // }, 1110000);
 
   
     // Measuring distances
@@ -242,11 +236,11 @@ map.on('load', function () {
       }
     });
 
-    // Timer stop when Ziel erreicht
-    map.on('click', 'destination', function(e) {
-        clearInterval(timer);
-        console.log("Timer Stop"); 
-    });
+    // // Timer stop when Ziel erreicht
+    // map.on('click', 'destination', function(e) {
+    //     clearInterval(timer);
+    //     console.log("Timer Stop"); 
+    // });
   });
 });
 
@@ -272,10 +266,27 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
               if (clickedLayer === toggleableLayerIds[j]) {
                 layers.children[j].className = 'active';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'visible');
+                // Timer
+                var sec = 0;
+                function pad(val) {
+                  return val > 9 ? val : "0" + val;
+                }            
+                var timer = setInterval(function _() {
+                  document.getElementById("seconds").innerHTML = pad(++sec % 60);
+                  document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+                }, 1000);
+                setTimeout(function () {
+                  clearInterval(timer);
+                }, 1110000);
               } else {
                 layers.children[j].className = '';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
               }
+              // Timer stop when Ziel erreicht
+              map.on('click', 'destination', function(e) {
+                clearInterval(timer);
+                console.log("Timer Stop"); 
+              });
           }
       };
       var layers = document.getElementById('menu');
