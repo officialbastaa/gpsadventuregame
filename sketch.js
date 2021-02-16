@@ -33,20 +33,21 @@ map.on('load', function () {
     var lat = e.coords.latitude;
     var userPosition = [lon, lat];
     console.log("Userlocation: " + userPosition);
-  
-    // Timer
-    var sec = 0;
-    function pad(val) {
-      return val > 9 ? val : "0" + val;
-    }            
-    var timer = setInterval(function _() {
-      document.getElementById("seconds").innerHTML = pad(++sec % 60);
-      document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-    }, 1000);
-    setTimeout(function () {
-      clearInterval(timer);
-    }, 1110000);
 
+      // Timer
+      var sec = 0;
+      function pad(val) {
+        return val > 9 ? val : "0" + val;
+      }            
+      var timer = setInterval(function _() {
+        document.getElementById("seconds").innerHTML = pad(++sec % 60);
+        document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+      }, 1000);
+      setTimeout(function () {
+        clearInterval(timer);
+      }, 1110000);
+
+  
     // Measuring distances
     var from = turf.point([lon, lat]);  // coords of own location
     var options = { units: 'kilometers' };
@@ -69,6 +70,9 @@ map.on('load', function () {
     }
     console.log("Entfernung: " + entfernung);
     if(entfernung < 0.02){
+      clearInterval(timer);
+      console.log("Timer Stop"); 
+
       var features = map.queryRenderedFeatures(e.point, {
         layers: ['destination'] 
       });
@@ -103,7 +107,8 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
-      } else {
+      } 
+      if(distance > 0.02) {
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(e.features[0].geometry.coordinates)
         .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
@@ -135,7 +140,8 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
-      } else {
+      } 
+      if(distance > 0.02) {
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(e.features[0].geometry.coordinates)
         .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
@@ -167,7 +173,8 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
-      } else {
+      } 
+      if(distance > 0.02) {
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(e.features[0].geometry.coordinates)
         .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
@@ -200,12 +207,6 @@ map.on('load', function () {
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
       } 
-      // else {
-      //   var popup = new mapboxgl.Popup({ offset: [0, -15] })
-      //   .setLngLat(e.features[0].geometry.coordinates)
-      //   .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
-      //   .addTo(map);
-      // }
     });  
 
     // Center on Test (5)
@@ -232,7 +233,8 @@ map.on('load', function () {
         .setLngLat(feature.geometry.coordinates)
         .setHTML('<h3>' + feature.properties.title + '</h3><p>' + feature.properties.description + '</p>')
         .addTo(map);
-      } else {
+      } 
+      if(distance > 0.02) {
         var popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(e.features[0].geometry.coordinates)
         .setText('Du bist zu weit weg. Gehe näher zum Marker um den Tipp zu öffnen.')
@@ -270,16 +272,6 @@ var toggleableLayerIds = ['MISSION 1', 'MISSION 2', 'MISSION 3'];
               if (clickedLayer === toggleableLayerIds[j]) {
                 layers.children[j].className = 'active';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'visible');
-
-                // Timer
-                var sec = 0;
-                function pad(val) {
-                  return val > 9 ? val : "0" + val;
-                }            
-                var timer = setInterval(function _() {
-                    document.getElementById("seconds").innerHTML = pad(++sec % 60);
-                    document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
-                }, 1000);
               } else {
                 layers.children[j].className = '';
                 map.setLayoutProperty(toggleableLayerIds[j], 'visibility', 'none');
